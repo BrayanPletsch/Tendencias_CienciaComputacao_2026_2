@@ -1,0 +1,30 @@
+entrada           esperado      v1   final  origem
+--------------------------------------------------
+'529.982.247-25'      True      ok      ok  prompt inicial
+'529.982.247-26'     False      ok      ok  prompt inicial
+'529.982.247-2'      False      ok      ok  prompt inicial
+'abcdefghijk'        False      ok      ok  prompt inicial
+'123.456.789-09'      True      ok      ok  prompt refinado
+'111.444.777-35'      True      ok      ok  prompt refinado
+'045.123.745-58'      True      ok      ok  prompt refinado
+'52998224725'         True      ok      ok  prompt refinado
+'529 982 247 25'      True      ok      ok  prompt refinado
+'00000000000'        False   FALHA      ok  prompt refinado
+'11111111111'        False   FALHA      ok  prompt refinado
+'22222222222'        False   FALHA      ok  prompt refinado
+'99999999999'        False   FALHA      ok  prompt refinado
+'529.982.247-24'     False      ok      ok  prompt refinado
+'5299822472'         False      ok      ok  prompt refinado
+'529982247250'       False      ok      ok  prompt refinado
+''                   False      ok      ok  prompt refinado
+None                 False      ok      ok  prompt refinado
+'           '        False      ok      ok  prompt refinado
+'529.982.24A-25'     False      ok      ok  prompt refinado
+
+total de casos: 20
+v1 sem a guarda: 4 falha(s)
+    '00000000000' (caso vindo do prompt refinado)
+    '11111111111' (caso vindo do prompt refinado)
+    '22222222222' (caso vindo do prompt refinado)
+    '99999999999' (caso vindo do prompt refinado)
+final: 0 falha(s)
