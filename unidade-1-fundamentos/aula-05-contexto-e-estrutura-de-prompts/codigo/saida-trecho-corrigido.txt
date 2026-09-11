@@ -1,0 +1,18 @@
+ERROR falha ao registrar acesso de ana
+Traceback (most recent call last):
+  File "C:\Users\BRAYANARAGAOPLETSCH\Documents\aula_optativa_kadidja\Tendencias_CienciaComputacao_2026_2\unidade-1-fundamentos\aula-05-contexto-e-estrutura-de-prompts\codigo\trecho_corrigido.py", line 64, in registrar_acesso
+    conexao.execute("INSERT INTO acessos VALUES (?)", (nome,))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: acessos
+Consulta parametrizada
+  buscar_usuario('ana'): Usuario(id=1, nome='ana', saldo=Decimal('1500.00'))
+
+D1 corrigido: a mesma entrada maliciosa nao vaza dados
+  buscar_usuario("x' OR '1'='1"): None
+
+D2 corrigido: lista vazia nao levanta excecao
+  media_saldos([]): None
+  media_saldos(todos): 636.80
+
+D3 corrigido: a falha e registrada antes de virar False
+  registrar_acesso('ana'): False

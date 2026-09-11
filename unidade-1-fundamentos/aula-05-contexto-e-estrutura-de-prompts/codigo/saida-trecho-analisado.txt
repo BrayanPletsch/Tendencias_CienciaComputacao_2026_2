@@ -1,0 +1,17 @@
+Caso normal
+  buscar_usuario('ana'): [(1, 'ana', 1500.0)]
+  media_saldos: 1500.0
+
+D1: injecao de SQL
+  buscar_usuario("x' OR '1'='1") devolveu 3 registros
+    (1, 'ana', 1500.0)
+    (2, 'bruno', 320.5)
+    (3, 'carla', 89.9)
+
+D2: divisao por zero
+  buscar_usuario('nao_existe') devolveu 0 registros
+  media_saldos(lista vazia) levantou ZeroDivisionError: division by zero
+
+D3: except generico esconde o erro
+  registrar_acesso apos remover a tabela devolveu False
+  nenhuma mensagem de erro chegou a quem chamou a funcao
