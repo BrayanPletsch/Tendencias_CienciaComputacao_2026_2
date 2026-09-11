@@ -1,0 +1,39 @@
+Tokens no corpus: 47
+Tokens distintos: 20
+
+1. Distribuicao do proximo token depois de "um"
+-----------------------------------------------
+   erro              80.0%
+   aviso             20.0%
+
+2. Efeito da temperatura sobre o contexto "um"
+----------------------------------------------
+   token              T=0.2   T=1.0   T=2.0
+   erro               99.9%   80.0%   66.7%
+   aviso               0.1%   20.0%   33.3%
+
+3. 5 execucoes do mesmo prompt com temperatura 1.0
+--------------------------------------------------
+   execucao 1: o codigo apresentou um erro de depreciacao o
+   execucao 2: o codigo apresentou um erro de sintaxe o
+   execucao 3: o codigo apresentou um erro na linha vinte
+   execucao 4: o codigo apresentou um aviso de sintaxe o
+   execucao 5: o teste passou sem nenhum aviso de indentacao
+
+4. 5 execucoes do mesmo prompt com temperatura 0.2
+--------------------------------------------------
+   execucao 1: o codigo apresentou um erro de depreciacao o
+   execucao 2: o codigo apresentou um erro de sintaxe o
+   execucao 3: o codigo apresentou um erro de sintaxe o
+   execucao 4: o codigo apresentou um erro de sintaxe o
+   execucao 5: o codigo apresentou um erro de asercao o
+
+5. Contexto ausente do corpus
+-----------------------------
+   contexto "banco": sem continuacao possivel
+   contexto "kubernetes": sem continuacao possivel
+
+6. Por que o modelo nao sabe contar letras
+------------------------------------------
+   a palavra "indentacao" e um unico token para este modelo
+   o modelo enxerga 1 unidade, nao 10 caracteres
