@@ -1,0 +1,27 @@
+Afirmacao 1: a busca em dict nao depende do tamanho da estrutura
+      tamanho    ns por busca
+        1,000           109.8
+       10,000           144.9
+      100,000           136.8
+    1,000,000           293.1
+
+Afirmacao 2: em lista o custo cresce com o tamanho
+      tamanho     dict (ns)      lista (ns)
+        1,000          96.2         28098.0
+       10,000         126.0        232186.0
+      100,000         136.3       3624459.0
+    1,000,000         420.7      21357594.0
+
+Afirmacao 3: o dict do Python nao preserva a ordem de insercao
+   versao do Python: 3.14.2
+   ordem de insercao: ['zulu', 'alfa', 'mike', 'bravo']
+   ordem ao iterar:   ['zulu', 'alfa', 'mike', 'bravo']
+   preserva a ordem:  True
+
+Afirmacao 4: chaves diferentes nunca produzem o mesmo hash
+   hash(1)    = 1
+   hash(1.0)  = 1
+   hash(True) = 1
+   os tres sao iguais: True
+   dict apos inserir as tres chaves: {1: 'booleano'}
+   quantidade de itens: 1
