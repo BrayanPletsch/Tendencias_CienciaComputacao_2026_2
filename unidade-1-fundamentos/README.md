@@ -1,13 +1,12 @@
 # Unidade 1: Fundamentos de IA e Engenharia de Prompt
 
-Cinco encontros, de 13/08 a 10/09. A unidade sai do conceito geral de Inteligência
-Artificial e chega na construção controlada de prompts, passando pela mecânica dos
-modelos de linguagem.
+Cinco encontros, de 13/08 a 10/09. A unidade começa no conceito geral de Inteligência
+Artificial, passa pelo funcionamento dos modelos de linguagem e termina na construção de
+prompts com papéis, restrições e exemplos.
 
-O fio condutor é sempre o mesmo: um modelo generativo não consulta uma base de
-verdades, ele calcula qual continuação é provável. Tudo o que vem depois na unidade
-(estrutura de prompt, refinamento, papéis, restrições, validação) é consequência
-prática desse fato.
+O que liga as aulas é o funcionamento do modelo generativo: ele calcula qual continuação
+é mais provável para o texto que recebeu, sem consultar uma base de fatos. Estrutura de
+prompt, refinamento, papéis, restrições e validação, que vêm depois, partem disso.
 
 ## Aulas
 
@@ -19,9 +18,9 @@ prática desse fato.
 | 03/09 | [Refinamento de prompts](aula-04-refinamento-de-prompts/) | Refinamento de prompts | [atividade](aula-04-refinamento-de-prompts/atividade.md) |
 | 10/09 | [Contexto e estrutura de prompts](aula-05-contexto-e-estrutura-de-prompts/) | Contexto e estrutura de prompts | [atividade](aula-05-contexto-e-estrutura-de-prompts/atividade.md) |
 
-## Competências desenvolvidas
+## Competências do plano de ensino
 
-O plano de ensino define uma competência por encontro:
+Uma por encontro:
 
 1. compreender conceitos básicos de IA;
 2. identificar o funcionamento de modelos generativos;
@@ -29,31 +28,31 @@ O plano de ensino define uma competência por encontro:
 4. ajustar prompts para maior precisão;
 5. aplicar técnicas avançadas de prompting.
 
-## Como as aulas se encadeiam
+## Como as aulas se ligam
 
-A aula 01 estabelece o vocabulário e a hierarquia entre IA, aprendizado de máquina,
-aprendizado profundo e IA generativa, e separa IA preditiva de IA generativa.
+A aula 01 define o vocabulário: a hierarquia entre IA, aprendizado de máquina, aprendizado
+profundo e IA generativa, e a diferença entre IA preditiva e IA generativa.
 
-A aula 02 abre a caixa e mostra o mecanismo: previsão do próximo token sobre uma
-distribuição de probabilidade. É onde alucinação e variabilidade deixam de ser defeito
-misterioso e passam a ser consequência esperada do funcionamento.
+A aula 02 mostra o mecanismo, a previsão do próximo token a partir de uma distribuição de
+probabilidade. Com isso, alucinação e variação entre respostas passam a ter explicação: são
+efeitos esperados de como o modelo funciona.
 
-A aula 03 usa esse mecanismo para justificar por que estruturar o prompt importa. Se o
-modelo escolhe a continuação mais provável dado o contexto, então o contexto é a
-variável que está sob controle de quem escreve.
+A aula 03 usa esse mecanismo para justificar a estrutura do prompt. Se o modelo escolhe a
+continuação mais provável para o contexto que recebeu, o contexto é a parte que quem
+escreve consegue controlar.
 
-A aula 04 transforma isso em método iterativo: testar, analisar a resposta, formular
-hipótese de melhoria, refinar, comparar e validar.
+A aula 04 transforma isso em método: testar, analisar a resposta, levantar uma hipótese
+de melhoria, refinar, comparar e validar.
 
-A aula 05 fecha com as técnicas que dão controle fino sobre o resultado: papéis,
-restrições, delimitadores, exemplos e decomposição em etapas.
+A aula 05 trata das técnicas que dão mais controle sobre o resultado: papéis, restrições,
+delimitadores, exemplos e divisão em etapas.
 
 ## Conceitos usados em toda a unidade
 
 | Conceito | Definição curta |
 |---|---|
 | Inteligência Artificial | Área da computação dedicada a sistemas capazes de realizar tarefas que associamos à inteligência humana. |
-| Machine Learning | Algoritmos que identificam padrões a partir de dados, em vez de seguir regras programadas manualmente. |
+| Machine Learning | Algoritmos que identificam padrões a partir de dados, sem regras programadas manualmente. |
 | Deep Learning | Aprendizado baseado em redes neurais artificiais profundas. |
 | IA preditiva | Analisa dados existentes para classificar ou prever. |
 | IA generativa | Recebe uma instrução e produz conteúdo novo a partir dela. |
