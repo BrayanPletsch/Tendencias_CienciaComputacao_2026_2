@@ -1,0 +1,30 @@
+entrada: '70040010'
+Digite o CEP: Logradouro: Quadra SBN Quadra 1
+Bairro: Asa Norte
+Cidade: Brasília/DF
+(código de saída 0)
+
+entrada: '70040-010'
+Digite o CEP: Logradouro: Quadra SBN Quadra 1
+Bairro: Asa Norte
+Cidade: Brasília/DF
+(código de saída 0)
+
+entrada: '78175000'
+Digite o CEP: Logradouro: 
+Bairro: 
+Cidade: Poconé/MT
+(código de saída 0)
+
+entrada: '99999999'
+KeyError: 'logradouro'
+(código de saída 1)
+
+entrada: '70040010 '
+http.client.InvalidURL: URL can't contain control characters. '/ws/70040010 /json/' (found at least ' ')
+(código de saída 1)
+
+entrada: '7004001O'
+urllib.error.HTTPError: HTTP Error 400: Bad Request
+(código de saída 1)
+

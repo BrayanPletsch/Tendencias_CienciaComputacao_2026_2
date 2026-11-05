@@ -1,0 +1,31 @@
+entrada: '70040010'
+Digite o CEP: Logradouro: Quadra SBN Quadra 1
+Bairro: Asa Norte
+Cidade: Brasília/DF
+(código de saída 0)
+
+entrada: '70040-010'
+Digite o CEP: Logradouro: Quadra SBN Quadra 1
+Bairro: Asa Norte
+Cidade: Brasília/DF
+(código de saída 0)
+
+entrada: '78175000'
+Digite o CEP: Logradouro e bairro não informados para este CEP.
+Cidade: Poconé/MT
+(código de saída 0)
+
+entrada: '99999999'
+Digite o CEP: CEP 99999-999 não encontrado.
+(código de saída 1)
+
+entrada: '70040010 '
+Digite o CEP: Logradouro: Quadra SBN Quadra 1
+Bairro: Asa Norte
+Cidade: Brasília/DF
+(código de saída 0)
+
+entrada: '7004001O'
+Digite o CEP: CEP inválido: '7004001O'. Use 8 dígitos, com ou sem hífen (ex.: 70040-010).
+(código de saída 1)
+
