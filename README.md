@@ -1,51 +1,50 @@
 # Tendências em Ciência da Computação (2026/2)
 
-Repositório de estudo e entrega das atividades da disciplina Tendências em Ciência da
-Computação, do Centro Universitário UDF, no segundo semestre de 2026.
+Repositório das atividades da disciplina Tendências em Ciência da Computação, do Centro
+Universitário UDF, no segundo semestre de 2026.
 
-A disciplina trata de Engenharia de Prompt e aplicações de Inteligência Artificial.
-O eixo do semestre não é aprender a operar uma ferramenta específica, e sim entender
-como modelos generativos funcionam, como se comunica com eles de forma controlada e
-onde estão os limites que exigem verificação humana.
+A disciplina trata de Engenharia de Prompt e de aplicações de Inteligência Artificial. Ao
+longo do semestre o foco é entender como os modelos generativos funcionam, como escrever
+instruções para eles e em que pontos o resultado precisa ser conferido por uma pessoa.
 
 - Professora: Kadidja Valéria (kadidja.oliveira@udf.edu.br)
-- Estudante: Brayan A. Pletsch
-- Avaliação prática: cinco atividades de 0,5 ponto, totalizando 5,0 pontos na A2
+- Estudante: Brayan A. Pletsch, RGM 38473585
+- Turma: Engenharia de Software, N1, noturno (disciplina optativa)
+- Avaliação prática: atividades de 0,5 ponto cada, somando 5,0 pontos na A2
 
-## Como o repositório está organizado
+## Organização
 
 ```
 .
-├── docs/                        plano de aulas e material da disciplina
-├── aula-inaugural/              missão de decolagem
-├── unidade-1-fundamentos/       IA, LLMs e Engenharia de Prompt
+├── docs/                             plano de aulas e material da disciplina
+├── aula-inaugural/                   missão de decolagem
+├── unidade-1-fundamentos/            IA, LLMs e Engenharia de Prompt
+├── unidade-2-programacao-assistida/  programação assistida e automação com IA
+├── unidade-3-low-code/               projeto Low Code em grupo
 └── LICENSE
 ```
 
-Cada aula tem uma pasta própria com dois arquivos fixos:
+Cada aula tem uma pasta com dois arquivos fixos:
 
-- `README.md` reúne a síntese teórica da aula, escrita com as minhas palavras a partir
-  dos slides e da bibliografia.
-- `atividade.md` é a entrega avaliada, com o registro do que foi feito, os resultados
-  obtidos e a análise crítica.
+- `README.md`, com o resumo da aula escrito por mim a partir dos slides e da bibliografia;
+- `atividade.md`, com a entrega avaliada: o que foi feito, os resultados e a análise.
 
-Quando a atividade envolve código, ele fica em uma subpasta (`codigo/` ou
-`experimentos/`) e pode ser executado sem instalar nada além do Python 3. Todo
-resultado citado nos textos veio de uma execução real desses arquivos, e não de uma
-descrição aproximada.
+Quando a atividade tem código, ele fica numa subpasta (`codigo/` ou `experimentos/`) e roda
+só com o Python 3 instalado. Os resultados citados nos textos vêm da execução desses
+arquivos.
 
 ## Unidades
 
 | Unidade | Tema | Situação |
 |---|---|---|
 | [Unidade 1](unidade-1-fundamentos/) | Fundamentos de IA e Engenharia de Prompt | concluída |
-| Unidade 2 | Programação assistida por IA | a partir de 17/09 |
-| Unidade 3 | Low Code e No Code | a partir de 08/10 |
+| [Unidade 2](unidade-2-programacao-assistida/) | Programação assistida e automação com IA | concluída |
+| [Unidade 3](unidade-3-low-code/) | Low Code e No Code | projeto em grupo: protótipo montado e testado em parte |
 | Unidade 4 | Agentes de IA e ética | a partir de 05/11 |
 
 ## Como executar o código
 
-Todos os scripts usam apenas a biblioteca padrão do Python.
+Os scripts usam só a biblioteca padrão do Python.
 
 ```bash
 python --version                 # 3.10 ou superior
@@ -53,7 +52,7 @@ cd unidade-1-fundamentos/aula-02-llms-e-sua-logica/experimentos
 python proximo_token.py
 ```
 
-Para a suíte de testes da aula 03:
+Testes da aula 03:
 
 ```bash
 cd unidade-1-fundamentos/aula-03-engenharia-de-prompt/codigo
@@ -61,12 +60,27 @@ python -m unittest test_valida_cpf -v
 python comparar_versoes.py
 ```
 
+Testes da Unidade 2:
+
+```bash
+cd unidade-2-programacao-assistida/aula-06-programacao-em-pares-com-ia/codigo
+python -m unittest test_cep -v
+
+cd ../../aula-08-automacao-com-ia/codigo
+python -m unittest test_contar_niveis_log -v
+```
+
+Os testes do CEP não usam a rede. Só o `executar_casos.py` da aula 06 consulta o ViaCEP de
+verdade e precisa de internet.
+
 ## Uso de IA neste repositório
 
-As atividades da disciplina consistem justamente em usar IA generativa, então o uso
-está declarado em cada entrega: qual ferramenta, qual prompt, qual resposta veio dela
-e o que eu fiz com essa resposta depois.
+Usar IA generativa faz parte das atividades, então cada entrega diz qual ferramenta foi
+usada, qual prompt foi enviado, o que voltou e o que eu fiz com a resposta. Nas atividades
+de código da Unidade 2, as respostas da IA estão copiadas sem edição na pasta `prompts/` de
+cada aula, e o código gerado ficou guardado separado da versão final para dar para
+comparar.
 
-O critério que segui é o mesmo que a professora estabeleceu em aula: a IA é assistente,
-não autora. Nenhuma afirmação técnica entrou nos textos sem eu conseguir explicá-la, e
-onde havia como verificar por execução eu escrevi o código e executei.
+Sigo o critério que a professora colocou em aula: a IA ajuda, mas quem responde pelo que é
+entregue sou eu. Quando dava para verificar uma afirmação executando código, escrevi o
+código e executei.
