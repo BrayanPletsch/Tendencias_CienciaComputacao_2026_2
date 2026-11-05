@@ -1,0 +1,12 @@
+exemplo.log
+  primeira versão (IA)   INFO 2, WARNING 1, ERROR 2, fora do formato 0
+  versão final           INFO 2, WARNING 1, ERROR 2, fora do formato 0
+
+misturado.log
+  primeira versão (IA)   INFO 2, WARNING 1, ERROR 2, fora do formato 6
+  versão final           INFO 2, WARNING 1, ERROR 2, fora do formato 5
+
+vazio.log
+  primeira versão (IA)   INFO 0, WARNING 0, ERROR 0, fora do formato 0
+  versão final           INFO 0, WARNING 0, ERROR 0, fora do formato 0
+
