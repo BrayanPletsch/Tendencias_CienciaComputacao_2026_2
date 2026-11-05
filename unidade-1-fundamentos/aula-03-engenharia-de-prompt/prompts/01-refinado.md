@@ -52,6 +52,5 @@ a suíte não está cobrindo o suficiente.
 
 ## Observação sobre o critério de qualidade
 
-O último bloco é o que mais mudou o resultado. Ele não descreve a resposta desejada,
-ele define uma condição verificável de fracasso da resposta. Isso transforma o critério
-em algo que eu consigo testar depois, executando a suíte.
+O último bloco foi o que mais mudou o resultado. Ele define uma condição verificável
+em que a resposta fracassa, e isso eu consigo testar depois executando a suíte.

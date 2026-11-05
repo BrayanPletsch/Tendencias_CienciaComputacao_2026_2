@@ -1,9 +1,9 @@
 # V1a: variação com foco didático
 
-Mesma tarefa da V1, com o objetivo trocado. Aqui eu não quero a suíte pronta, quero
-entender o critério que leva a escolher cada caso.
+Mesma tarefa da V1, com o objetivo trocado. Nesta versão eu queria entender o critério
+que leva a escolher cada caso, sem receber a suíte pronta.
 
-Diferença em relação à V1: o bloco OBJETIVO e o bloco FORMATO foram reescritos, o bloco
+Diferença em relação à V1: os blocos OBJETIVO e FORMATO foram reescritos, e o bloco
 CRITÉRIOS DE QUALIDADE foi trocado por um critério de compreensão.
 
 ```text

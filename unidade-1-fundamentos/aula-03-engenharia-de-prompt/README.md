@@ -1,10 +1,10 @@
-# Aula 03: Engenharia de Prompt
+# Aula 03: engenharia de prompt
 
 Data: 27/08. Objetivo do plano de ensino: introduzir Engenharia de Prompt. Competência:
 elaborar instruções claras para IA. Atividade avaliativa A2, valor 0,5 ponto.
 
-O material da professora numera esta aula como "Aula 02". Aqui ela aparece como aula 03
-porque a numeração das pastas segue a ordem cronológica dos encontros da Unidade 1.
+No material da professora esta aula aparece como "Aula 02". Aqui ela é a aula 03 porque
+as pastas seguem a ordem cronológica dos encontros da Unidade 1.
 
 Entrega da atividade: [atividade.md](atividade.md).
 Reflexão individual: [reflexao.md](reflexao.md).
@@ -13,15 +13,15 @@ Código usado na validação: [codigo/](codigo/).
 Slides da aula: [slides-engenharia-de-prompt.pdf](slides-engenharia-de-prompt.pdf).
 Slides da atividade A2: [slides-atividade-a2.pdf](slides-atividade-a2.pdf).
 
-## Prompt e Engenharia de Prompt
+## Prompt e engenharia de prompt
 
 Um prompt é a instrução, pergunta ou conjunto de informações fornecidas a um sistema de
 IA para orientar a geração de uma resposta.
 
-Engenharia de Prompt é o processo de criar, estruturar, testar, avaliar e aperfeiçoar
-essas instruções. A palavra que importa nessa definição é processo. O senso comum trata
-o assunto como "saber perguntar", o que sugere um acerto de uma vez só. A prática é
-outra: escrever, executar, comparar com um critério e reescrever.
+Engenharia de prompt é o processo de criar, estruturar, testar, avaliar e aperfeiçoar
+essas instruções. Muita gente resume o assunto como "saber perguntar", o que dá a ideia
+de acertar de uma vez só. Na prática é um ciclo: escrever, executar, comparar com um
+critério e reescrever.
 
 ```
 Problema -> Prompt -> Resposta -> Análise -> Refinamento -> Nova resposta -> Validação
@@ -38,12 +38,12 @@ Considere a instrução:
 Crie uma atividade sobre programação.
 ```
 
-O modelo precisa supor público, nível, linguagem, objetivo, duração, formato,
-dificuldade e resultado esperado. Oito decisões que ele vai tomar sozinho, escolhendo
-em cada uma a alternativa mais provável no material que ele viu durante o treinamento.
-A chance de as oito coincidirem com o que eu queria é baixa.
+Com ela, o modelo precisa supor público, nível, linguagem, objetivo, duração, formato,
+dificuldade e resultado esperado. São oito decisões que ele toma sozinho, e em cada uma
+escolhe a alternativa mais provável pelo material que viu no treinamento. A chance de as
+oito baterem com o que eu queria é baixa.
 
-Agora a mesma tarefa com as decisões explicitadas:
+A mesma tarefa, com as decisões escritas:
 
 ```text
 Você é professor de programação.
@@ -63,8 +63,8 @@ A atividade deve:
 Utilize linguagem clara e adequada para estudantes iniciantes.
 ```
 
-O segundo prompt não é melhor por ser maior. Ele é melhor por eliminar suposições. Essa
-distinção é o centro da aula seguinte.
+O segundo prompt é maior, mas o que melhora a resposta são as suposições que ele
+elimina. Essa diferença é o assunto principal da aula seguinte.
 
 ## Anatomia de um prompt
 
@@ -78,28 +78,28 @@ distinção é o centro da aula seguinte.
 | Formato | como apresentar | `Tabela com Requisito, Descrição e Prioridade.` |
 | Critérios de qualidade | como avaliar o resultado | `A resposta deve ser executável e testável.` |
 
-Nem todo prompt precisa dos sete. Uma pergunta simples com um prompt de sete blocos
-fica pior, não melhor.
+Nem todo prompt precisa dos sete. Para uma pergunta simples, montar um prompt de sete
+blocos deixa o resultado pior.
 
 ## Os seis princípios
 
-1. **Clareza.** Evitar instruções ambíguas e de dupla interpretação.
-2. **Contexto.** Informar para quem e para qual finalidade a resposta será produzida.
-3. **Especificidade.** Definir exatamente o que deve ser produzido e qual o escopo.
-4. **Formato de saída.** Informar como se deseja receber o resultado.
-5. **Restrições.** Definir os limites do modelo.
-6. **Critérios de qualidade.** Definir as métricas de sucesso esperadas da resposta.
+1. Clareza: evitar instruções ambíguas e de dupla interpretação.
+2. Contexto: informar para quem e para qual finalidade a resposta será produzida.
+3. Especificidade: definir exatamente o que deve ser produzido e qual o escopo.
+4. Formato de saída: informar como se deseja receber o resultado.
+5. Restrições: definir os limites do modelo.
+6. Critérios de qualidade: definir as métricas de sucesso esperadas da resposta.
 
 ## Técnicas
 
-**Role prompting.** Atribuir um papel ao modelo. O efeito prático é restringir o
-vocabulário e as prioridades da resposta. Um revisor de segurança e um revisor de
-performance olham o mesmo código e produzem listas diferentes. Essa técnica é
-explorada em profundidade na [aula 05](../aula-05-contexto-e-estrutura-de-prompts/).
+Role prompting é atribuir um papel ao modelo. Na prática isso restringe o vocabulário e
+as prioridades da resposta: um revisor de segurança e um revisor de performance olham o
+mesmo código e produzem listas diferentes. A técnica é explorada com mais detalhe na
+[aula 05](../aula-05-contexto-e-estrutura-de-prompts/).
 
-**Few-shot prompting.** Fornecer exemplos de entrada e saída antes da tarefa real. É a
-forma mais confiável de fixar formato, porque mostrar o formato desejado funciona
-melhor do que descrevê-lo.
+Few-shot prompting é fornecer exemplos de entrada e saída antes da tarefa real. É a forma
+mais confiável de fixar o formato, porque mostrar o formato desejado funciona melhor do
+que descrevê-lo.
 
 ```text
 Classifique os requisitos como funcionais ou não funcionais.
@@ -112,26 +112,25 @@ Agora classifique:
 "O sistema deve permitir recuperar a senha."
 ```
 
-**Prompt com restrições.** Estabelecer limites explícitos de tamanho, vocabulário,
-quantidade de itens e tecnologias permitidas.
+No prompt com restrições, os limites ficam explícitos: tamanho, vocabulário, quantidade
+de itens e tecnologias permitidas.
 
-**Prompt em etapas.** Dividir uma tarefa complexa em passos numerados, para que o modelo
-não pule direto para a conclusão.
+O prompt em etapas divide uma tarefa complexa em passos numerados, para que o modelo não
+pule direto para a conclusão.
 
-**Refinamento iterativo.** Tratar o prompt como versão. V1, testar, avaliar, V2, testar,
+O refinamento iterativo trata o prompt como versão: V1, testar, avaliar, V2, testar,
 avaliar.
 
 ## Ética e responsabilidade
 
-Uma resposta pode ser incorreta, incompleta, desatualizada, enviesada ou inventada, e
-ainda assim aparentemente convincente. Resposta bem escrita não significa resposta
-correta.
+Uma resposta bem escrita pode estar incorreta, incompleta, desatualizada, enviesada ou
+inventada e, mesmo assim, parecer convincente.
 
-O ciclo de pensamento crítico proposto em aula: gerar, questionar, verificar, comparar,
-validar, utilizar.
+O ciclo de pensamento crítico proposto em aula é gerar, questionar, verificar, comparar,
+validar e utilizar.
 
-A responsabilidade não se transfere junto com a tarefa. Como está no material da
-disciplina, o estudante é o único responsável pelo que entrega, e se ele não consegue
+Pelo material da disciplina, a responsabilidade continua com o estudante mesmo quando a
+tarefa passa pela IA. Ele é o único responsável pelo que entrega, e se não consegue
 explicar o que escreveu ou programou, não houve aprendizagem.
 
 ## Critérios de avaliação da atividade

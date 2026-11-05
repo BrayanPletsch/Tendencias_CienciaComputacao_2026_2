@@ -1,7 +1,7 @@
 # Prompts testados
 
-Versões de prompt usadas na atividade, na ordem em que foram executadas. As respostas
-obtidas e a análise de cada uma estão em [../atividade.md](../atividade.md).
+Versões de prompt usadas na atividade, na ordem em que rodei cada uma. As respostas e a
+análise de cada versão estão em [../atividade.md](../atividade.md).
 
 | Arquivo | Versão | Técnicas aplicadas |
 |---|---|---|
@@ -11,4 +11,4 @@ obtidas e a análise de cada uma estão em [../atividade.md](../atividade.md).
 | [03-variacao-cobertura.md](03-variacao-cobertura.md) | V1b | V1 com few-shot e exigência de classes de equivalência |
 | [04-variacao-persona.md](04-variacao-persona.md) | V1c | V1 com troca de papel para revisor adversarial |
 
-Ferramenta usada em todas as execuções: Claude Opus 5 (Anthropic), em 10/09/2026.
+Todas as execuções foram feitas no Claude Opus 5 (Anthropic), em 10/09/2026.

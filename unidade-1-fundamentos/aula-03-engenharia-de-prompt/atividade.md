@@ -1,7 +1,9 @@
-# Atividade A2: Engenharia de Prompt
+# Atividade A2: engenharia de prompt
 
 Disciplina: Tendências em Ciência da Computação
+
 Unidade 1, aula 03 (27/08)
+
 Valor: 0,5 ponto
 
 ## 1. Identificação
@@ -9,31 +11,32 @@ Valor: 0,5 ponto
 | Campo | Informação |
 |---|---|
 | Estudante | Brayan A. Pletsch |
-| Turma | Tendências em Ciência da Computação, 2026/2, quinta-feira |
+| RGM | 38473585 |
+| Turma | Engenharia de Software, N1, noturno (disciplina optativa) |
 | Data da execução | 10/09/2026 |
 | Ferramenta de IA | Claude Opus 5 (Anthropic) |
 | Ambiente de verificação | Python 3.14, biblioteca padrão |
 
 ## 2. Problema escolhido
 
-Gerar uma suíte de testes para a função `valida_cpf`, que confere se um CPF informado
-no cadastro de um sistema acadêmico é válido.
+Gerar uma suíte de testes para a função `valida_cpf`, que confere se o CPF informado no
+cadastro de um sistema acadêmico é válido.
 
-O caso de uso está entre os sugeridos pela professora ("criar casos de teste"). Escolhi
-esse em vez de "explicar um conceito" por um motivo específico: o resultado é
-verificável por execução. Se eu pedir uma explicação, a única forma de julgar a resposta
-é eu achá-la boa, o que é circular. Com casos de teste, eu escrevo a implementação,
-rodo a suíte e o computador diz se a resposta da IA encontrou algum defeito ou não.
+"Criar casos de teste" está entre os casos de uso sugeridos pela professora. Preferi esse
+a "explicar um conceito" porque o resultado pode ser conferido executando. Se eu pedir
+uma explicação, a única forma de julgar a resposta é eu achar que ela está boa, o que é
+circular. Com casos de teste, eu escrevo a implementação, rodo a suíte e o computador
+mostra se a resposta da IA encontrou algum defeito.
 
-O problema é real. Validação de CPF aparece em praticamente todo sistema de cadastro
-brasileiro, o algoritmo de módulo 11 é simples o bastante para eu conferir à mão, e a
-regra tem pelo menos uma armadilha conhecida.
+Validação de CPF aparece em praticamente todo sistema de cadastro brasileiro. O
+algoritmo de módulo 11 é simples o bastante para eu conferir à mão, e a regra tem pelo
+menos uma armadilha conhecida.
 
 ## 3. Objetivo
 
-Obter uma suíte de testes que encontre defeitos na minha implementação, e não uma que
-confirme que ela funciona. A diferença entre essas duas coisas é o que a atividade
-investiga.
+Obter uma suíte de testes que encontre defeitos na minha implementação. Boa parte da
+atividade é sobre a diferença entre uma suíte assim e uma que só confirma que a função
+funciona.
 
 ## 4. Prompt inicial
 
@@ -45,7 +48,7 @@ Crie casos de teste para uma função que valida CPF.
 
 ## 5. Resultado inicial
 
-A resposta veio organizada e razoável. Em resumo, ela entregou:
+A resposta veio organizada e razoável. Ela trouxe:
 
 - uma explicação do algoritmo de módulo 11 que eu não tinha pedido;
 - quatro casos de teste, escritos em pseudocódigo genérico, sem linguagem definida;
@@ -53,24 +56,24 @@ A resposta veio organizada e razoável. Em resumo, ela entregou:
 - os casos: CPF válido, CPF com dígito verificador errado, CPF com menos de onze
   dígitos e string sem dígitos.
 
-Os quatro casos estão registrados na classe `TestesDoPromptInicial` do arquivo
-[codigo/test_valida_cpf.py](codigo/test_valida_cpf.py), traduzidos para unittest.
+Traduzi os quatro casos para unittest e eles estão na classe `TestesDoPromptInicial` do
+arquivo [codigo/test_valida_cpf.py](codigo/test_valida_cpf.py).
 
 ## 6. Análise crítica
 
 | Questão | Resposta |
 |---|---|
 | A resposta atendeu ao objetivo? | Parcialmente. Ela criou testes, mas testes que confirmam o caminho feliz. |
-| A resposta foi clara? | Sim, e essa foi parte do problema. A clareza me fez parar de procurar defeitos nela. |
+| A resposta foi clara? | Sim, e isso foi parte do problema: como estava clara, parei de procurar defeitos nela. |
 | O que ficou faltando? | Casos de borda, entradas malformadas, `None`, variações de máscara e a regra dos dígitos repetidos. |
 | O que poderia ser melhorado? | A linguagem não foi definida, então veio pseudocódigo que eu tive que traduzir. |
 | Existem informações que precisam ser verificadas? | Sim, o CPF de exemplo. Conferi o cálculo de módulo 11 e ele está correto. |
-| A IA fez alguma suposição inadequada? | Sim, três: supôs que eu não sabia o algoritmo, supôs que quatro casos bastavam, e supôs que meu objetivo era demonstrar que a função funciona. |
+| A IA fez alguma suposição inadequada? | Sim, três: que eu não conhecia o algoritmo, que quatro casos bastavam e que meu objetivo era demonstrar que a função funciona. |
 
-O problema central não foi a IA ter errado. Foi eu não ter dito o que estava tentando
-descobrir. Como o prompt só dizia "crie casos de teste", o modelo escolheu a
-continuação mais provável para essa frase, que é uma demonstração didática do conceito.
-E uma demonstração didática cobre o caso feliz e três negativos óbvios.
+Os quatro testes estão corretos. O que faltou foi eu dizer no prompt o que estava
+tentando descobrir. Como ele só dizia "crie casos de teste", o modelo seguiu pela
+continuação mais provável dessa frase, que é uma demonstração didática do conceito, e
+uma demonstração didática cobre o caso feliz e três negativos óbvios.
 
 Rodei essa suíte contra a minha implementação inicial, a `valida_cpf_v1`, que só
 confere tamanho e dígitos verificadores. Os quatro testes passaram. Se eu tivesse
@@ -80,45 +83,45 @@ parado aqui, teria entregue a função com um defeito e uma suíte verde.
 
 Arquivo completo: [prompts/01-refinado.md](prompts/01-refinado.md)
 
-Os sete blocos da anatomia da aula, com destaque para três decisões:
+O prompt usa os sete blocos da anatomia vista em aula. Três decisões pesaram mais.
 
-O bloco OBJETIVO passou a dizer explicitamente `assuma que a implementação está errada
-em algum ponto e escreva os testes que revelariam isso`. Foi a mudança de maior efeito,
-porque inverteu a postura da resposta.
+No bloco OBJETIVO passei a dizer `assuma que a implementação está errada em algum ponto e escreva os testes que revelariam isso`.
+Foi a mudança de maior efeito, porque inverteu a postura da resposta.
 
-O bloco RESTRIÇÕES exigiu `você deve mostrar a conta de pelo menos um deles para eu
-poder conferir`. Isso serve como defesa contra alucinação: qualquer CPF que a IA
-inventasse teria que vir com a conta, e eu conseguiria checar.
+O bloco RESTRIÇÕES exigiu `você deve mostrar a conta de pelo menos um deles para eu poder conferir`.
+É uma defesa contra alucinação: qualquer CPF que a IA inventasse teria que vir com a
+conta, e eu conseguiria checar.
 
-O bloco CRITÉRIOS DE QUALIDADE definiu uma condição de fracasso verificável: `se todos
-passarem, a suíte não está cobrindo o suficiente`. Não é uma descrição de qualidade, é
-um teste que eu posso executar sobre a própria resposta.
+O bloco CRITÉRIOS DE QUALIDADE definiu uma condição de fracasso verificável:
+`se todos passarem, a suíte não está cobrindo o suficiente`. Com isso eu consigo julgar
+a resposta executando a própria suíte que ela entrega.
 
 ## 8. Resultado refinado
 
 A resposta veio em três partes, como o formato pedia.
 
-**Classes de equivalência.** Sete classes identificadas: válido com máscara, válido sem
-máscara, tamanho abaixo, tamanho acima, conteúdo não numérico, verificadores incorretos
-e sequência de dígitos repetidos.
+Na primeira, sete classes de equivalência: válido com máscara, válido sem máscara,
+tamanho abaixo, tamanho acima, conteúdo não numérico, verificadores incorretos e
+sequência de dígitos repetidos.
 
-**Casos de teste.** Doze métodos, com `subTest` para os grupos parametrizados. Estão na
-classe `TestesDoPromptRefinado` do arquivo
+Depois, os casos de teste: doze métodos, com `subTest` para os grupos parametrizados.
+Estão na classe `TestesDoPromptRefinado` do arquivo
 [codigo/test_valida_cpf.py](codigo/test_valida_cpf.py).
 
-**Perguntas em aberto sobre a regra de negócio.** Três, e é aqui que estava o valor:
+No fim, três perguntas em aberto sobre a regra de negócio, que foram a parte mais útil
+da resposta:
 
 1. A função deve rejeitar sequências como `111.111.111-11`? Elas passam no cálculo de
    módulo 11 e mesmo assim não são CPFs emitidos.
 2. Uma entrada com máscara inconsistente, como `529982.247-25`, deve ser aceita?
 3. `None` deve devolver `False` ou levantar exceção?
 
-A primeira pergunta apontou o defeito que eu tinha. A `valida_cpf_v1` aceitava as onze
-sequências de dígitos repetidos. Conferi o cálculo à mão para `111.111.111-11` antes de
-acreditar, e a IA estava certa: o módulo 11 realmente valida esses números.
+A primeira pergunta apontava o defeito que eu tinha: a `valida_cpf_v1` aceitava as dez
+sequências de dígitos repetidos (de `000.000.000-00` a `999.999.999-99`). Antes de acreditar, refiz à mão o cálculo para
+`111.111.111-11`, e a IA estava certa, o módulo 11 valida esses números.
 
-Corrigi a função acrescentando a guarda `if len(set(digitos)) == 1: return False`, o que
-gerou a versão final em [codigo/valida_cpf.py](codigo/valida_cpf.py).
+Corrigi a função com a guarda `if len(set(digitos)) == 1: return False`. A versão final
+está em [codigo/valida_cpf.py](codigo/valida_cpf.py).
 
 ## 9. Técnicas utilizadas
 
@@ -133,7 +136,7 @@ gerou a versão final em [codigo/valida_cpf.py](codigo/valida_cpf.py).
 
 ## 10. Comparação
 
-Comparação executada, não estimada. O script
+Os números abaixo vêm de execução. O script
 [codigo/comparar_versoes.py](codigo/comparar_versoes.py) roda os vinte casos das duas
 suítes contra as duas versões da função.
 
@@ -158,8 +161,8 @@ Saída completa em [codigo/saida-comparacao.txt](codigo/saida-comparacao.txt).
 | CPFs de exemplo com cálculo conferível | não | sim |
 | Perguntas levantadas sobre a regra | 0 | 3 |
 
-O número que resume a atividade é o da terceira linha. As duas suítes rodaram contra o
-mesmo código. Uma passou inteira, a outra encontrou o defeito.
+As duas suítes rodaram contra o mesmo código. A do prompt inicial passou inteira e a do
+refinado encontrou o defeito.
 
 ## 11. Comparação das variações
 
@@ -167,30 +170,29 @@ As três variações partem da V1 e mudam um bloco de cada vez.
 
 | Variação | Bloco alterado | Resultado |
 |---|---|---|
-| V1a didática | objetivo e formato | Oito casos com justificativa individual. Melhor para aprender o critério, pior como entregável. Foi a única que me fez entender por que a máscara inconsistente merece um caso próprio. |
-| V1b cobertura | acréscimo de few-shot e meta por categoria | Formato de tabela idêntico ao dos exemplos, sem eu ter descrito o formato. Cobriu as seis categorias e disse, corretamente, que uma delas não se aplicava, em vez de inventar caso para preencher. |
-| V1c persona | apenas papel e objetivo | A mais produtiva. Sob o papel de analista antifraude, a resposta abriu direto com os dígitos repetidos, ordenados por probabilidade de acontecer na prática. |
+| V1a didática | objetivo e formato | Oito casos, cada um com sua justificativa. Boa para aprender o critério, fraca como entregável. Foi a única que me fez entender por que a máscara inconsistente merece um caso próprio. |
+| V1b cobertura | acréscimo de few-shot e meta por categoria | Tabela no mesmo formato dos exemplos, sem eu ter descrito o formato. Cobriu as seis categorias e disse, corretamente, que uma delas não se aplicava, sem inventar caso para preencher. |
+| V1c persona | apenas papel e objetivo | Foi a mais produtiva. Com o papel de analista antifraude, a resposta já abriu com os dígitos repetidos, ordenados pela probabilidade de acontecer na prática. |
 
-O resultado da V1c foi o que me chamou mais atenção. Entre a V1 e a V1c mudaram só dois
-blocos de texto, e o restante do prompt era o mesmo. Ainda assim, a V1 tratou os dígitos
-repetidos como uma pergunta em aberto no final da resposta, enquanto a V1c os colocou
-como o primeiro item da lista.
+A V1c foi a que mais me chamou atenção. Da V1 para ela mudaram só dois blocos de texto,
+o resto do prompt era o mesmo, e mesmo assim a V1 deixou os dígitos repetidos como uma
+pergunta em aberto no final da resposta, enquanto a V1c os colocou como o primeiro item
+da lista.
 
-Não vejo isso como o modelo "ficando mais inteligente" com o papel. A explicação que faz
-sentido, a partir do mecanismo visto na [aula 02](../aula-02-llms-e-sua-logica/), é que o
-texto do papel entra no contexto e desloca a distribuição. Um contexto que fala em
-fraude torna mais provável a continuação que lista brechas conhecidas.
+Pelo mecanismo visto na [aula 02](../aula-02-llms-e-sua-logica/), a explicação que faz
+sentido para mim é que o texto do papel entra no contexto e desloca a distribuição. Um
+contexto que fala em fraude torna mais provável a continuação que lista brechas
+conhecidas.
 
 ## 12. Validação
 
-Esta seção existe porque a resposta da IA não vale nada até ser verificada. Três
-verificações foram feitas.
+Fiz três verificações, porque sem elas eu não teria como confiar na resposta da IA.
 
-**Conferência aritmética.** Recalculei os dígitos verificadores dos quatro CPFs usados
-como válidos. Todos corretos. A conta de `111.111.111-11` também foi refeita à mão,
-porque a afirmação de que ela passa no módulo 11 era contraintuitiva.
+Primeiro recalculei os dígitos verificadores dos quatro CPFs usados como válidos, e
+todos estavam corretos. Também refiz à mão a conta de `111.111.111-11`, porque a
+afirmação de que ela passa no módulo 11 era contraintuitiva.
 
-**Execução da suíte.** Dezesseis testes, todos passando contra a versão final.
+Depois rodei a suíte: dezesseis testes, todos passando contra a versão final.
 
 ```
 Ran 16 tests in 0.002s
@@ -198,9 +200,9 @@ Ran 16 tests in 0.002s
 OK
 ```
 
-**Execução da comparação.** Confirmou que os quatro casos de dígitos repetidos falham
-na `v1` e passam na versão final, o que prova que a suíte refinada realmente detecta o
-defeito e que a correção resolveu.
+Por último rodei a comparação. Ela confirmou que os quatro casos de dígitos repetidos
+falham na `v1` e passam na versão final, ou seja, a suíte refinada detecta o defeito e a
+correção resolveu.
 
 Para reproduzir:
 
@@ -210,48 +212,47 @@ python -m unittest test_valida_cpf -v
 python comparar_versoes.py
 ```
 
-Registro também o que eu não validei: não consultei a documentação oficial da Receita
-Federal sobre a regra dos dígitos repetidos. O que confirmei foi que essas sequências
-passam no módulo 11, o que é matemática, e que a prática de rejeitá-las é padrão em
-bibliotecas de validação. A afirmação de que a Receita não emite esses números é algo
-que eu aceitei da IA e que continua pendente de fonte primária.
+Não consultei a documentação oficial da Receita Federal sobre a regra dos dígitos
+repetidos. Confirmei que essas sequências passam no módulo 11, o que é matemática, e
+que rejeitá-las é prática padrão em bibliotecas de validação. Já a afirmação de que a
+Receita não emite esses números eu aceitei da IA, e ela continua pendente de fonte
+primária.
 
 ## 13. Ética e responsabilidade
 
 Quais riscos existem no uso da IA neste problema?
 
-O risco mais concreto é o inverso do que se costuma imaginar. Não é a IA gerar um teste
-errado, porque teste errado quebra e eu vejo. O risco é a IA gerar uma suíte correta e
-incompleta, que passa inteira e me dá confiança em um código defeituoso. Foi
-exatamente o que aconteceu na primeira rodada. Uma suíte verde é um sinal de qualidade
-mais convincente do que uma resposta em texto, e por isso é mais perigosa.
+O risco mais concreto aqui é a IA gerar uma suíte correta e incompleta, que passa
+inteira e me dá confiança num código com defeito. Foi o que aconteceu na primeira
+rodada. Um teste errado me preocupa menos, porque ele quebra e eu vejo. Já uma suíte
+verde convence mais do que uma resposta em texto, e por isso é mais perigosa.
 
-O segundo risco é o CPF inventado. O modelo poderia ter produzido um número com aparência
-correta e verificadores errados, e a suíte teria falhado sem que eu soubesse se o culpado
-era o código ou o dado de teste. Foi por isso que o prompt exigiu a conta junto.
+Outro risco é o CPF inventado. O modelo podia ter produzido um número com cara de
+válido e verificadores errados, e a suíte teria falhado sem que eu soubesse se o
+problema estava no código ou no dado de teste. Por isso o prompt exigiu a conta junto.
 
-O terceiro é de contexto: eu usei CPFs de teste conhecidos e números sintéticos. Colar
-dados reais de pessoas em um prompt seria tratamento de dado pessoal em serviço de
-terceiro, o que exigiria base legal sob a LGPD.
+Tem também a questão dos dados pessoais. Usei CPFs de teste conhecidos e números
+sintéticos. Colar dados reais de pessoas em um prompt seria tratamento de dado pessoal
+em serviço de terceiro, o que exigiria base legal sob a LGPD.
 
-Sobre autoria: a estrutura dos testes veio da IA e eu declaro isso. A escolha do
-problema, os sete blocos do prompt refinado, o critério de qualidade verificável, a
-implementação da função, o script de comparação e as três verificações são meus. E, o
-mais importante para o critério da disciplina, eu consigo explicar cada caso de teste
-da suíte e por que ele não é redundante.
+Quanto à autoria, a estrutura dos testes veio da IA, e declaro isso. São meus a escolha
+do problema, os sete blocos do prompt refinado, o critério de qualidade verificável, a
+implementação da função, o script de comparação e as três verificações. Para o critério
+da disciplina, o que mais conta é que eu consigo explicar cada caso de teste da suíte e
+por que ele não é redundante.
 
-## 14. Take Away
+## 14. Take away
 
-O que eu levo da atividade não é a técnica dos sete blocos, que eu já tinha lido nos
-slides. É a percepção de que o bloco mais importante do prompt refinado foi o critério
-de qualidade, e que ele funcionou porque era verificável.
+A técnica dos sete blocos eu já tinha lido nos slides. O que levo da atividade é que o
+bloco mais importante do prompt refinado foi o critério de qualidade, e que ele
+funcionou porque dava para verificar.
 
-`A suíte deve ser completa e bem escrita` é um critério que não faz nada. `Se todos os
-testes passarem, a suíte não está cobrindo o suficiente` é um critério que muda a
-resposta, porque descreve uma condição que pode ser checada.
+Um critério como `A suíte deve ser completa e bem escrita` não muda nada na resposta.
+Já `Se todos os testes passarem, a suíte não está cobrindo o suficiente` muda, porque
+descreve uma condição que pode ser checada.
 
-A generalização que eu tiro: um prompt melhora quando cada exigência dele pode ser
-conferida depois. Adjetivo não é exigência. Condição verificável é.
+Generalizando, acho que um prompt melhora quando cada exigência dele pode ser conferida
+depois, e um adjetivo como "completa" não tem como ser conferido.
 
 Reflexão completa em [reflexao.md](reflexao.md).
 

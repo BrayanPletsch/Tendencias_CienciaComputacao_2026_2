@@ -47,4 +47,4 @@ forçar uma resposta.
 O papel de "revisor que quer aprovar" e o de "analista que quer encontrar brecha" levam
 a listas diferentes a partir do mesmo código. Esta variação foi a que produziu o
 resultado mais útil da atividade, e o motivo está registrado na
-[análise da entrega](../atividade.md#comparação-das-variações).
+[análise da entrega](../atividade.md#11-comparação-das-variações).
