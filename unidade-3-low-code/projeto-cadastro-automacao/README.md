@@ -43,7 +43,8 @@ Critérios de sucesso, definidos antes de montar:
 4. o processo funciona do começo ao fim sem ninguém intervir.
 
 O registro original das etapas 1 e 2, feito no formulário da professora em 15/10, está em
-[registro-etapas-1-e-2.pdf](registro-etapas-1-e-2.pdf).
+[registro-etapas-1-e-2.pdf](registro-etapas-1-e-2.pdf). O registro final, com as cinco
+etapas, está em [registro-etapas-1-a-5.pdf](registro-etapas-1-a-5.pdf).
 
 ## 2. Por que o Make
 

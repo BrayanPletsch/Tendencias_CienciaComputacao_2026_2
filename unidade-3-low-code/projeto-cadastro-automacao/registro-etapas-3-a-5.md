@@ -1,7 +1,8 @@
 # Registro das etapas 3 a 5
 
 Texto das etapas 3, 4 e 5 do formulário de acompanhamento da professora, continuação do
-[registro das etapas 1 e 2](registro-etapas-1-e-2.pdf). Data do preenchimento: 05/11/2026.
+[registro das etapas 1 e 2](registro-etapas-1-e-2.pdf). O formulário completo, com as cinco
+etapas, está em [registro-etapas-1-a-5.pdf](registro-etapas-1-a-5.pdf).
 
 ## 03. Integrar vibecode e IA (22/10)
 
