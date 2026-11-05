@@ -1,6 +1,7 @@
-# Atividade: Refinamento de Prompts
+# Atividade: refinamento de prompts
 
 Disciplina: Tendências em Ciência da Computação
+
 Unidade 1, aula 04 (03/09)
 
 ## Identificação
@@ -8,7 +9,8 @@ Unidade 1, aula 04 (03/09)
 | Campo | Informação |
 |---|---|
 | Estudante | Brayan A. Pletsch |
-| Turma | Tendências em Ciência da Computação, 2026/2, quinta-feira |
+| RGM | 38473585 |
+| Turma | Engenharia de Software, N1, noturno (disciplina optativa) |
 | Data da execução | 10/09/2026 |
 | Ferramenta de IA | Claude Opus 5 (Anthropic) |
 | Ambiente de verificação | Python 3.14.2, biblioteca padrão |
@@ -18,20 +20,19 @@ Unidade 1, aula 04 (03/09)
 ### Contexto
 
 Um colega do segundo semestre me perguntou por que buscar um item em um dicionário
-Python é mais rápido do que em uma lista. Ele já programa em Python, usa `dict` todo
+Python é mais rápido do que em uma lista. Ele já programa em Python e usa `dict` todo
 dia, mas nunca viu tabela hash e ainda não cursou análise de algoritmos.
 
 ### Problema
 
-Produzir uma explicação de tabela hash que sirva de fato para essa pessoa. O risco
-específico é que a explicação escorregue para complexidade assintótica e notação O
-grande, que é vocabulário que ele ainda não tem, ou fique tão simplificada que não
-explique nada.
+Produzir uma explicação de tabela hash que sirva de verdade para essa pessoa. O risco era
+a explicação escorregar para complexidade assintótica e notação O grande, vocabulário que
+ele ainda não tem, ou ficar tão simplificada que não explicasse nada.
 
 ### Objetivo
 
-Investigar quanto a formulação do prompt muda a resposta, e verificar se a resposta
-refinada é apenas mais bem apresentada ou também mais correta.
+Investigar quanto a formulação do prompt muda a resposta e verificar se a resposta
+refinada fica só mais bem apresentada ou também mais correta.
 
 ## Prompt 1: versão inicial
 
@@ -41,16 +42,15 @@ Explique tabela hash.
 
 ### Resultado
 
-A resposta veio em cinco parágrafos com estrutura de verbete. Cobriu: definição de
-tabela hash, função de espalhamento, buckets, colisões com encadeamento e endereçamento
-aberto, e complexidade média O(1) contra pior caso O(n).
+A resposta veio em cinco parágrafos, com estrutura de verbete. Cobriu a definição de
+tabela hash, função de espalhamento, buckets, colisões (com encadeamento e com
+endereçamento aberto) e complexidade média O(1) contra pior caso O(n).
 
-O conteúdo não estava errado. Estava desconectado do problema. Três trechos merecem
-registro:
+O conteúdo estava certo, só que desconectado do problema. Anotei três trechos:
 
 - usou "função de dispersão", "endereçamento aberto" e "fator de carga" sem definir
   nenhum dos três;
-- o exemplo de código estava em pseudocódigo de aparência C, com alocação manual de
+- o exemplo de código estava em pseudocódigo com cara de C, com alocação manual de
   vetor;
 - afirmou que "em Python, os dicionários são implementados como tabelas hash e, por
   isso, não garantem a ordem de inserção dos elementos".
@@ -59,10 +59,10 @@ registro:
 
 | Pergunta | Resposta |
 |---|---|
-| O que funcionou? | A cobertura conceitual. Nada de importante ficou de fora do assunto tabela hash. |
+| O que funcionou? | A cobertura conceitual. Nada de importante sobre tabela hash ficou de fora. |
 | O que faltou? | Qualquer ligação com Python, que era o contexto real da pergunta. |
-| O que ficou genérico? | O texto inteiro. É a resposta de enciclopédia, adequada para qualquer leitor e útil para nenhum. |
-| O que poderia ser melhor? | O nível. Explicar endereçamento aberto para quem nunca viu tabela hash é começar pelo fim. |
+| O que ficou genérico? | O texto inteiro. É uma resposta de enciclopédia, genérica a ponto de não servir para nenhum leitor em particular. |
+| O que poderia ser melhor? | O nível. Quem nunca viu tabela hash não precisa de endereçamento aberto logo de início. |
 | Algo precisa ser verificado? | Sim, a afirmação sobre ordem de inserção. |
 
 ## Prompt 2: primeiro refinamento
@@ -73,7 +73,7 @@ registro:
 |---|---|
 | Papel | professor de estruturas de dados acostumado a turmas iniciantes |
 | Contexto | estudante de segundo semestre, usa `dict`, nunca viu tabela hash nem análise de algoritmos |
-| Objetivo | responder por que `dict` é mais rápido que lista, não expor a teoria completa |
+| Objetivo | responder por que `dict` é mais rápido que lista, sem expor a teoria completa |
 | Público | uma pessoa específica, com repertório conhecido |
 | Formato | analogia, depois mecanismo, depois comparação em tabela |
 | Restrições | sem notação O grande, sem termo técnico não definido, máximo 500 palavras, exemplos em Python |
@@ -112,21 +112,21 @@ caso que não foi mencionado no texto.
 
 ### Resultado
 
-Melhora clara. A analogia escolhida foi a de um guarda-volumes numerado: em vez de
-abrir armário por armário procurando a mochila, a etiqueta diz o número do armário.
-O mecanismo foi explicado como "a função hash transforma a chave em um número, e esse
-número indica a posição". Colisão foi apresentada como duas mochilas recebendo a mesma
-etiqueta, resolvida guardando as duas no mesmo armário e conferindo qual é qual na
-hora de retirar.
+A melhora foi clara. A analogia escolhida foi a de um guarda-volumes numerado: em vez de
+abrir armário por armário procurando a mochila, a etiqueta diz o número do armário. O
+mecanismo foi explicado como "a função hash transforma a chave em um número, e esse
+número indica a posição". A colisão apareceu como duas mochilas recebendo a mesma
+etiqueta, resolvida guardando as duas no mesmo armário e conferindo qual é qual na hora
+de retirar.
 
-A tabela comparativa saiu com quatro linhas: busca por chave, busca por valor,
-ordenação e uso de memória. O fechamento apontou corretamente que a lista é melhor
-quando a ordem importa, quando se percorre tudo de qualquer jeito e quando o dado não
-tem uma chave natural.
+A tabela comparativa saiu com quatro linhas: busca por chave, busca por valor, ordenação
+e uso de memória. No fechamento, a resposta apontou corretamente que a lista é melhor
+quando a ordem importa, quando se percorre tudo de qualquer jeito e quando o dado não tem
+uma chave natural.
 
-Dois problemas permaneceram:
+Dois problemas continuaram:
 
-- a afirmação sobre ordem de inserção reapareceu, agora na linha "ordenação" da tabela,
+- a afirmação sobre ordem de inserção voltou, agora na linha "ordenação" da tabela,
   escrita como "o dict não mantém a ordem";
 - a resposta afirmou que "a função hash garante que chaves diferentes recebam posições
   diferentes", o que contradiz o parágrafo sobre colisões que ela mesma tinha escrito.
@@ -146,25 +146,24 @@ Dois problemas permaneceram:
 
 Escala: 1 muito insatisfatório, 2 insatisfatório, 3 adequado, 4 muito bom, 5 excelente.
 
-A linha que importa é a de precisão, que ficou em 3 nas duas versões. Todos os outros
-critérios subiram, alguns em quatro pontos. O refinamento resolveu adequação, foco e
-formato, e não tocou na correção do conteúdo. Isso é exatamente o que o enunciado
-antecipa quando diz que refinar o prompt não elimina a necessidade de validar.
+Para mim a linha mais importante é a de precisão, que ficou em 3 nas duas versões. Todos
+os outros critérios subiram, e adequação ao público subiu quatro pontos, de 1 para 5. O refinamento resolveu adequação,
+foco e formato e não mexeu na correção do conteúdo. É o que o enunciado antecipa quando
+diz que refinar o prompt não elimina a necessidade de validar.
 
 ## Prompt 3: segundo refinamento
 
 ### O que ainda precisava melhorar
 
-Duas afirmações factuais duvidosas sobrevivendo a um refinamento inteiro. Nenhum dos
+Duas afirmações factuais duvidosas sobreviveram a um refinamento inteiro, e nenhum dos
 sete blocos do prompt anterior pedia que a resposta se responsabilizasse pelo que
 afirmava.
 
 ### Hipótese de melhoria
 
-Se eu exigir que cada afirmação de comportamento seja marcada como verificável ou não,
-e que a resposta indique como verificá-la, a IA vai ter que separar o que ela sabe do
-que ela está supondo. A hipótese não é que ela pare de errar, é que os erros fiquem
-localizáveis.
+Se eu exigir que cada afirmação de comportamento seja marcada como verificável ou não, e
+que a resposta indique como verificá-la, a IA vai ter que separar o que sabe do que está
+supondo. Eu não espero que ela pare de errar, só que os erros fiquem localizáveis.
 
 ### Prompt
 
@@ -187,8 +186,8 @@ não comprovar o que a afirmação diz, a resposta falhou.
 
 ### Resultado
 
-A explicação didática permaneceu praticamente igual à do Prompt 2, o que era esperado,
-porque essa parte já estava boa. O que mudou foi o tratamento das afirmações.
+A explicação didática ficou praticamente igual à do Prompt 2, o que eu já esperava,
+porque essa parte estava boa. Mudou o tratamento das afirmações.
 
 A resposta declarou Python 3.12 como referência e produziu cinco afirmações marcadas:
 
@@ -204,8 +203,8 @@ A terceira linha corrige, sem que eu tenha apontado, a afirmação que estava er
 duas respostas anteriores. A quarta contradiz a frase sobre garantia de posições
 distintas que aparecia no Prompt 2.
 
-Ou seja: a informação correta já estava disponível para o modelo nas três execuções. O
-que faltava era o prompt exigir a distinção entre afirmar e comprovar.
+Então a informação correta estava disponível para o modelo nas três execuções. Faltava o
+prompt exigir que ele separasse o que afirma do que consegue comprovar.
 
 ## Comparação final
 
@@ -220,20 +219,21 @@ que faltava era o prompt exigir a distinção entre afirmar e comprovar.
 | Utilidade prática | 2 | 4 | 5 |
 | Total | 17 | 32 | 35 |
 
-O salto de 17 para 32 veio de contexto, público e formato. O salto de 32 para 35 veio
-de uma coisa só, o critério de verificabilidade, e concentrou-se inteiro na linha de
-precisão.
+O salto de 17 para 32 veio de contexto, público e formato. O de 32 para 35 veio de uma
+coisa só, o critério de verificabilidade. Ele apareceu na precisão, que foi de 3 para 5, e
+em utilidade prática, que foi de 4 para 5.
 
 ### Qual modificação teve maior impacto?
 
-Depende de qual problema se quer resolver, e essa é a conclusão da atividade.
+Depende do problema que se quer resolver. Foi a principal conclusão que tirei da
+atividade.
 
-Para adequação, o elemento decisivo foi o contexto sobre quem é o leitor. Foi o que
-levou a nota de adequação de 1 para 5.
+Na adequação, o que decidiu foi o contexto sobre quem é o leitor. Foi isso que levou a
+nota de adequação de 1 para 5.
 
-Para correção, contexto não fez diferença nenhuma. O único elemento que mexeu na
-precisão foi a exigência de marcar cada afirmação como verificável ou conceitual, e
-mesmo assim ela funcionou porque eu declarei que iria executar os trechos.
+Na correção, o contexto não fez diferença nenhuma. O único elemento que mexeu na
+precisão foi a exigência de marcar cada afirmação como verificável ou conceitual, e mesmo
+assim ela funcionou porque eu declarei que ia executar os trechos.
 
 ## Validação
 
@@ -246,7 +246,7 @@ cd codigo
 python verificar_afirmacoes.py
 ```
 
-### Afirmação 1 e 2: custo de busca
+### Afirmações 1 e 2: custo de busca
 
 ```
 Afirmacao 2: em lista o custo cresce com o tamanho
@@ -257,16 +257,16 @@ Afirmacao 2: em lista o custo cresce com o tamanho
     1,000,000         420.7      21357594.0
 ```
 
-Confirmadas, com uma ressalva que eu não esperava. Multiplicando o tamanho por mil, a
-lista ficou cerca de 760 vezes mais lenta, o que é o crescimento linear previsto. O
-dicionário ficou cerca de 4 vezes mais lento, e não igual.
+As duas se confirmaram, com uma ressalva que eu não esperava. Com o tamanho multiplicado
+por mil, a lista ficou cerca de 760 vezes mais lenta, que é o crescimento linear
+previsto. O dicionário também ficou mais lento, cerca de 4 vezes.
 
-Ou seja, "não depende do tamanho" é verdadeiro como número de comparações e falso como
-tempo de relógio. Um dicionário de um milhão de chaves não cabe na cache do processador,
-então cada busca custa um acesso à memória principal. A afirmação da IA estava correta
-no nível em que ela foi feita, e a medição mostrou uma camada abaixo dela que a
-explicação didática ignora. Não conto isso como erro da resposta, conto como limite da
-abstração.
+Então "não depende do tamanho" vale para o número de comparações, mas não para o tempo
+de relógio. Um dicionário de um milhão de chaves não cabe na cache do processador, então
+cada busca custa um acesso à memória principal. A afirmação da IA estava correta no
+nível em que foi feita, e a medição mostrou uma camada abaixo dela que a explicação
+didática ignora. Para mim isso é limite da abstração, por isso não contei como erro da
+resposta.
 
 ### Afirmação 3: ordem de inserção
 
@@ -277,15 +277,14 @@ abstração.
    preserva a ordem:  True
 ```
 
-Confirmada a versão do Prompt 3 e refutada a dos Prompts 1 e 2. O `dict` preserva a
-ordem de inserção. Isso passou a ser detalhe de implementação no CPython 3.6 e virou
-garantia da linguagem no 3.7. A afirmação contrária circula em material antigo, e é o
-tipo exato de erro que a cartilha da disciplina descreve: informação desatualizada
-apresentada com confiança.
+A execução confirma a versão do Prompt 3 e refuta a dos Prompts 1 e 2: o `dict` preserva
+a ordem de inserção. No CPython 3.6 isso passou a ser detalhe de implementação, e no 3.7
+virou garantia da linguagem. A afirmação contrária circula em material antigo e é o tipo
+de erro que a cartilha da disciplina descreve, informação desatualizada apresentada com
+confiança.
 
-Detalhe importante: se eu tivesse aceitado a resposta do Prompt 2, teria repassado essa
-informação errada para o colega, e a resposta do Prompt 2 era muito mais agradável de
-ler do que a do Prompt 1.
+Se eu tivesse aceitado a resposta do Prompt 2, que era muito mais agradável de ler do que
+a do Prompt 1, teria repassado essa informação errada para o colega.
 
 ### Afirmação 4: colisão de hash
 
@@ -298,82 +297,92 @@ ler do que a do Prompt 1.
    quantidade de itens: 1
 ```
 
-Confirmada, e o resultado é mais forte do que a afirmação. Além de produzirem o mesmo
-hash, `1`, `1.0` e `True` são iguais entre si em Python, então o dicionário não guarda
-três entradas: guarda uma, com o valor da última atribuição e a chave da primeira.
+Confirmada, e o resultado diz mais do que a afirmação. Além de produzirem o mesmo hash,
+`1`, `1.0` e `True` são iguais entre si em Python, então depois das três inserções o
+dicionário fica com uma entrada só, com o valor da última atribuição e a chave da
+primeira.
 
-Isso refuta de forma definitiva a frase do Prompt 2 sobre a função hash garantir
-posições distintas.
+Isso refuta de vez a frase do Prompt 2 sobre a função hash garantir posições distintas.
 
 ### Checklist de validação
 
 - [x] A informação pode ser confirmada? Sim, quatro das cinco por execução.
 - [x] Os conceitos existem? Sim, todos conferidos na documentação do Python.
-- [x] Os dados estão atualizados? Não estavam nos Prompts 1 e 2. Estavam no Prompt 3.
+- [x] Os dados estão atualizados? Nos Prompts 1 e 2, não. No Prompt 3, sim.
 - [x] A resposta atende ao problema? A do Prompt 3, sim.
 - [x] Existem afirmações sem sustentação? Uma, marcada como conceitual pela própria resposta.
-- [x] As referências existem? Nenhuma referência foi citada, o que eu deveria ter exigido.
-- [x] Consigo explicar com minhas palavras? Sim, e o script é a prova disso.
+- [x] As referências existem? Nenhuma referência foi citada, e eu deveria ter exigido.
+- [x] Consigo explicar com minhas palavras? Sim, e o script mostra isso.
 
 ## Reflexão individual
 
-**1. Qual foi a principal diferença entre o prompt inicial e o prompt refinado?**
-O prompt inicial descrevia um assunto. O refinado descrevia uma situação: quem pergunta,
-o que essa pessoa já sabe, para que serve a resposta e como eu saberia que ela serviu.
+### 1. Qual foi a principal diferença entre o prompt inicial e o prompt refinado?
 
-**2. Quais elementos tiveram maior impacto no resultado?**
-Contexto e público, para adequação. Critério de qualidade verificável, para precisão.
-São dois elementos que resolvem problemas diferentes e não se substituem.
+O prompt inicial dizia só o assunto. O refinado descrevia uma situação: quem pergunta, o
+que essa pessoa já sabe, para que serve a resposta e como eu saberia que ela serviu.
 
-**3. Um prompt mais longo necessariamente produz uma resposta melhor?**
-Não. O Prompt 3 é maior que o Prompt 2, mas o ganho não veio do tamanho. Veio de um
-bloco específico. Um prompt que só acrescenta adjetivos aumenta de tamanho e não remove
-nenhuma ambiguidade, que é o único trabalho que o texto do prompt realmente faz.
+### 2. Quais elementos tiveram maior impacto no resultado?
 
-**4. O que acontece quando o objetivo não está claramente definido?**
-O modelo escolhe o objetivo mais provável para aquele texto. "Explique tabela hash"
-tem como continuação mais provável um verbete de enciclopédia, e foi isso que eu
-recebi. Não foi um erro do modelo, foi a resposta correta para a pergunta que eu fiz.
+Para adequação, contexto e público. Para precisão, o critério de qualidade verificável.
+Eles resolvem problemas diferentes, então um não substitui o outro.
 
-**5. Quais informações você considera indispensáveis para elaborar um bom prompt?**
-Quem é o leitor, qual decisão a resposta precisa apoiar, e como eu vou saber se ela
-serviu. As duas primeiras direcionam o conteúdo. A terceira é a que protege contra
-resposta bonita e errada, e é a que eu costumava esquecer.
+### 3. Um prompt mais longo necessariamente produz uma resposta melhor?
 
-**6. Como o refinamento de prompts pode ser útil para um profissional de Ciência da
-Computação?**
+Não. O Prompt 3 é maior que o Prompt 2, mas o ganho veio de um bloco específico. Um
+prompt que só acrescenta adjetivos fica maior e não remove nenhuma ambiguidade, que é o
+único trabalho que o texto do prompt realmente faz.
+
+### 4. O que acontece quando o objetivo não está claramente definido?
+
+O modelo escolhe o objetivo mais provável para aquele texto. "Explique tabela hash" tem
+como continuação mais provável um verbete de enciclopédia, e foi isso que eu recebi. Foi
+a resposta correta para a pergunta que eu fiz, então o modelo não errou.
+
+### 5. Quais informações você considera indispensáveis para elaborar um bom prompt?
+
+Quem é o leitor, qual decisão a resposta precisa apoiar e como eu vou saber se ela
+serviu. As duas primeiras direcionam o conteúdo. A terceira protege contra resposta
+bonita e errada, e é a que eu costumava esquecer.
+
+### 6. Como o refinamento de prompts pode ser útil para um profissional de Ciência da Computação?
+
 A situação desta atividade é rotina de trabalho: pedir explicação de um sistema
-desconhecido, gerar teste, revisar código, escrever documentação. Em todos esses casos
-a saída da IA entra em algo que outra pessoa vai usar. A parte que se transfere para o
-trabalho não é a técnica de escrever prompt, é o hábito de definir o critério de aceite
-antes de pedir.
+desconhecido, gerar teste, revisar código, escrever documentação. Em todos esses casos a
+saída da IA entra em algo que outra pessoa vai usar. Do que fiz aqui, o que eu levaria
+para o trabalho é o hábito de definir o critério de aceite antes de pedir. A técnica de
+escrever prompt em si pesa menos.
 
-**7. Que riscos surgem ao confiar em uma resposta sem avaliar sua qualidade?**
-Esta atividade produziu o exemplo. A resposta do Prompt 2 era clara, organizada, com
-analogia boa, e continha uma informação errada sobre o comportamento de uma estrutura
-de dados. Se eu tivesse repassado, teria ensinado errado com convicção. O risco não é
-a resposta ruim, que se percebe. É a resposta boa com um erro dentro.
+### 7. Que riscos surgem ao confiar em uma resposta sem avaliar sua qualidade?
 
-**8. Houve alguma situação em que o Prompt 3 ficou pior que o Prompt 2?**
-Sim, em fluidez. As marcações `[verificável]` e `[conceitual]` no meio do texto
-atrapalham a leitura corrida. Para o meu objetivo, que era validar, isso compensou. Se
-o objetivo fosse entregar o texto pronto para o colega, eu teria pedido as marcações em
-uma seção separada no fim.
+A própria atividade deu um exemplo. A resposta do Prompt 2 era clara, organizada, tinha
+uma analogia boa e mesmo assim continha uma informação errada sobre o comportamento de
+uma estrutura de dados. Se eu tivesse repassado, teria ensinado errado com convicção. O
+risco maior está na resposta boa com um erro dentro, porque a resposta ruim a gente
+percebe.
 
-**9. Existe um ponto em que adicionar mais instruções começa a prejudicar?**
-Existe, e eu vi de duas formas. Instruções que competem entre si fazem o modelo atender
-uma e sacrificar a outra: "máximo de 500 palavras" e "defina todo termo técnico" não
-cabem juntas se o assunto tiver muitos termos. E instruções de formato demais deixam o
-texto travado, como no item anterior. Cada restrição tem custo, e vale a pena somente se
-resolver um problema observado.
+### 8. Houve alguma situação em que o Prompt 3 ficou pior que o Prompt 2?
 
-**10. O que você faria para verificar se a resposta está tecnicamente correta?**
+Sim, na fluidez. As marcações `[verificável]` e `[conceitual]` no meio do texto
+atrapalham a leitura corrida. Para o meu objetivo, que era validar, isso compensou. Se o
+objetivo fosse entregar o texto pronto para o colega, eu teria pedido as marcações numa
+seção separada no fim.
+
+### 9. Existe um ponto em que adicionar mais instruções começa a prejudicar?
+
+Existe, e vi isso de duas formas. Quando duas instruções competem, o modelo atende uma e
+sacrifica a outra: "máximo de 500 palavras" e "defina todo termo técnico" não cabem
+juntas se o assunto tiver muitos termos. E instrução de formato demais deixa o texto
+travado, como no item anterior. Cada restrição tem um custo, então só vale colocar uma
+se ela resolver um problema que eu observei.
+
+### 10. O que você faria para verificar se a resposta está tecnicamente correta?
+
 Foi o que fiz: exigi que cada afirmação viesse com um meio de comprovação, escrevi o
-script, executei e comparei os números com o texto. Para o que não é executável, o
-caminho é a documentação oficial, e não uma segunda pergunta à mesma IA, que erraria
-duas vezes pelo mesmo motivo.
+script, executei e comparei os números com o texto. Para o que não dá para executar, eu
+iria na documentação oficial. Fazer uma segunda pergunta à mesma IA não resolve, porque
+ela erraria duas vezes pelo mesmo motivo.
 
-## Take Away
+## Take away
 
 > Um bom prompt não é simplesmente um prompt longo. Ele precisa eliminar as suposições
 > que o modelo teria que fazer sozinho e definir, antes da resposta chegar, como ela
@@ -384,22 +393,22 @@ duas vezes pelo mesmo motivo.
 1. Escreva o critério de aceite antes de escrever o prompt. Se você não consegue
    descrever como saberia que a resposta serviu, o problema ainda não está formulado.
 2. Diga para quem é a resposta e o que essa pessoa já sabe. Foi o que mais mudou a
-   adequação, e é uma linha de texto.
-3. Exija que afirmações factuais venham com meio de comprovação. Isso não impede o erro,
-   mas o torna localizável.
-4. Refine um elemento por vez e compare. Trocando cinco coisas de uma vez, você melhora
-   a resposta e não descobre o que funcionou.
-5. Cole o material em vez de descrevê-lo. O que está no contexto é a única parte que
-   você controla.
+   adequação, e custa uma linha de texto.
+3. Exija que afirmações factuais venham com meio de comprovação. O erro ainda pode
+   acontecer, só que fica localizável.
+4. Refine um elemento por vez e compare. Trocando cinco coisas de uma vez, a resposta
+   melhora e você não descobre o que funcionou.
+5. Cole o material no prompt em vez de descrevê-lo. O que está no contexto é a única
+   parte que você controla.
 
 ## Desafio final
 
-Um colega diz: "meu prompt não funcionou, a IA respondeu errado". Cinco perguntas antes
-de mexer no prompt:
+Um colega diz: "meu prompt não funcionou, a IA respondeu errado". Antes de mexer no
+prompt, eu faria cinco perguntas:
 
 1. Você definiu, antes de perguntar, como saberia que a resposta estava certa?
-2. A resposta está errada ou está fora do que você queria? São problemas diferentes e
-   têm correções diferentes.
+2. A resposta está errada ou está fora do que você queria? São problemas diferentes, com
+   correções diferentes.
 3. A informação necessária estava no prompt ou você esperava que o modelo soubesse?
 4. Você conferiu o erro em uma fonte independente ou está julgando pela impressão?
 5. A tarefa é do tipo que o modelo consegue fazer? Contar caracteres e informar evento
@@ -410,12 +419,12 @@ de mexer no prompt:
 O problema está no prompt, na resposta da IA, nas informações utilizadas ou na forma
 como o usuário avaliou o resultado?
 
-Nesta atividade, os quatro apareceram. O Prompt 1 era prompt mal formulado. A afirmação
-sobre ordem de inserção era informação desatualizada vinda do treinamento. A frase sobre
-a função hash garantir posições distintas era erro de raciocínio dentro da própria
-resposta. E o fato de eu ter dado nota 3 em precisão para o Prompt 2, sem verificar
-nada, era falha da minha avaliação. Só o quarto tipo eu não teria descoberto sem
-executar o código.
+Nesta atividade apareceram os quatro. O Prompt 1 estava mal formulado. A afirmação sobre
+ordem de inserção era informação desatualizada vinda do treinamento, e a frase sobre a
+função hash garantir posições distintas era um erro de raciocínio dentro da própria
+resposta. A nota 3 que eu dei em precisão para o Prompt 2, sem verificar nada, foi falha
+da minha avaliação. Dos quatro, esse é o único que eu não teria descoberto sem executar
+o código.
 
 ## Checklist da atividade
 

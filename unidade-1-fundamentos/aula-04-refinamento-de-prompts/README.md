@@ -1,11 +1,11 @@
-# Aula 04: Refinamento de Prompts
+# Aula 04: Refinamento de prompts
 
 Data: 03/09. Objetivo do plano de ensino: refinamento de prompts. Atividade prevista:
 comparar resultados de diferentes prompts. Competência: ajustar prompts para maior
 precisão.
 
-O material da professora numera esta aula como "Aula 03". Aqui ela aparece como aula 04
-por seguir a ordem cronológica dos encontros da unidade.
+O material da professora numera esta aula como "Aula 03". Aqui ela é a aula 04 porque
+sigo a ordem cronológica dos encontros da unidade.
 
 Enunciado original: [enunciado-da-professora.md](enunciado-da-professora.md).
 Entrega da atividade: [atividade.md](atividade.md).
@@ -14,10 +14,10 @@ Código de verificação: [codigo/verificar_afirmacoes.py](codigo/verificar_afir
 ## O que significa refinar
 
 Refinar um prompt é modificar a instrução a partir da análise do resultado que ela
-produziu. O ponto de partida não é o prompt, é a resposta anterior.
+produziu, então o ponto de partida é a resposta anterior.
 
-A aula 03 tratou de escrever um bom prompt. Esta aula trata do que fazer quando ele não
-funcionou. São coisas diferentes: a primeira é composição, a segunda é diagnóstico.
+A aula 03 tratou de escrever um bom prompt, que é um trabalho de composição. Esta trata
+do que fazer quando ele não funcionou, e aí o trabalho é de diagnóstico.
 
 O ciclo é:
 
@@ -25,30 +25,31 @@ O ciclo é:
 CRIAR -> TESTAR -> ANALISAR -> REFINAR -> TESTAR NOVAMENTE -> COMPARAR -> VALIDAR
 ```
 
-Duas etapas desse ciclo costumam ser puladas. A de analisar, porque a tentação é
-reescrever o prompt na hora, por intuição, sem identificar o que faltou. E a de
-comparar, porque quem escreveu a segunda versão já acredita que ela é melhor.
+Duas etapas desse ciclo costumam ser puladas. A análise, porque dá vontade de reescrever
+o prompt na hora, por intuição, sem identificar o que faltou. E a comparação, porque quem
+escreveu a segunda versão já acredita que ela é melhor.
 
-## Refinar não é aumentar
+## Tamanho e precisão do prompt
 
-Este é o ponto central da aula. Compare:
+Três versões de um pedido sobre Python mostram a diferença entre aumentar um prompt e
+refiná-lo. A primeira:
 
 ```text
 Explique Python.
 ```
 
-com:
+A segunda:
 
 ```text
 Explique Python de maneira muito completa, detalhada, bem estruturada,
 extremamente didática, bastante clara, muito aprofundada e com muitos exemplos.
 ```
 
-O segundo tem quinze palavras a mais e continua sem dizer nada. "Completo" para quem?
-"Aprofundado" até onde? Cada adjetivo acrescentado é mais uma decisão que o modelo vai
-tomar sozinho, e não menos.
+A segunda tem dezessete palavras a mais e continua sem especificar nada. "Completo" para
+quem? "Aprofundado" até onde? Cada adjetivo acrescentado é mais uma decisão que o modelo
+vai tomar sozinho.
 
-Agora este:
+A terceira:
 
 ```text
 Explique listas em Python para um estudante que já conhece variáveis e
@@ -64,11 +65,9 @@ Apresente:
 Finalize com um exercício sem apresentar a solução.
 ```
 
-Menor que o segundo e muito mais informativo, porque cada linha remove uma
-possibilidade em vez de acrescentar um adjetivo.
-
-Quantidade de palavras não é sinônimo de qualidade do prompt. O que conta é quantas
-suposições o texto elimina.
+Ela é menor que a segunda e informa muito mais, porque cada linha remove uma
+possibilidade. O que melhora um prompt é a quantidade de suposições que ele elimina, e o
+número de palavras diz pouco sobre isso.
 
 ## O que pode ser refinado
 
@@ -83,8 +82,8 @@ suposições o texto elimina.
 | Critérios de qualidade | como avaliar se a resposta serve |
 | Exemplos | qual padrão de entrada e saída seguir |
 
-Na prática, refinar bem é escolher qual desses elementos estava faltando, e não
-acrescentar todos de uma vez.
+Na prática, refinar bem é descobrir qual desses elementos estava faltando e acrescentar
+esse, sem colocar todos de uma vez.
 
 ## Perguntas de diagnóstico
 
@@ -106,19 +105,19 @@ relevância, organização, adequação ao público, atendimento ao objetivo e u
 prática.
 
 A nota isolada vale pouco, porque quem atribui é a mesma pessoa que escreveu o prompt.
-O que a tabela produz de útil é obrigar a separar dimensões que normalmente se
-confundem. Uma resposta pode ganhar em organização e perder em precisão ao mesmo tempo,
-e sem a tabela essa troca passa despercebida.
+A tabela ajuda porque obriga a separar dimensões que normalmente se confundem. Uma
+resposta pode ganhar em organização e perder em precisão ao mesmo tempo, e sem a tabela
+essa troca passa despercebida.
 
-## Uma resposta melhor escrita não é uma resposta correta
+## Validação da resposta refinada
 
 A cartilha *IA no comando? Você no controle* alerta que sistemas de IA produzem textos
 coerentes e convincentes que podem conter conceitos incorretos, dados sem fonte,
 referências inventadas, generalizações e conclusões apressadas.
 
-O refinamento do prompt melhora a adequação da resposta ao que foi pedido. Ele não
-melhora a veracidade. Uma resposta refinada é mais bem direcionada e continua exigindo
-a mesma verificação que a primeira.
+Refinar o prompt melhora a adequação da resposta ao que foi pedido, mas a veracidade
+continua a mesma. Por isso a resposta refinada, mesmo mais bem direcionada, exige a
+mesma verificação que a primeira.
 
 Checklist de validação usado na atividade:
 
@@ -130,15 +129,15 @@ Checklist de validação usado na atividade:
 - As referências citadas existem?
 - Eu consigo explicar a resposta com minhas palavras?
 
-## IA como apoio, não como substituição
+## IA como apoio
 
-O enunciado contrasta dois tipos de comando. Em vez de:
+O enunciado compara dois tipos de comando. No lugar de:
 
 ```text
 Resolva esse problema por mim.
 ```
 
-experimentar:
+ele sugere experimentar:
 
 ```text
 Ajude-me a compreender o caminho para resolver esse problema.
@@ -147,11 +146,11 @@ Não apresente a resposta completa imediatamente.
 Quando eu cometer um erro, explique qual conceito preciso revisar.
 ```
 
-A formulação da cartilha é usar a IA para pensar melhor, e não para pensar menos.
+A cartilha resume isso como usar a IA "para pensar melhor, e não para pensar menos".
 
 ## Material de apoio
 
-- **IA no comando? Você no controle.** Guia prático para usar a inteligência artificial
+- *IA no comando? Você no controle.* Guia prático para usar a inteligência artificial
   de forma inteligente, crítica e responsável na universidade. Grupo IA da STHEM/SEMESP
   e MetaRed TIC.
 - PYTHON SOFTWARE FOUNDATION. *Built-in Types: Mapping Types*.
