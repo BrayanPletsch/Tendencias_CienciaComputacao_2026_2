@@ -1,34 +1,36 @@
 # Atividade prática: demonstrando a lógica de um LLM
 
 Disciplina: Tendências em Ciência da Computação
+
 Unidade 1, aula 02 (20/08)
-Estudante: Brayan A. Pletsch
+
+- Estudante: Brayan A. Pletsch
+- RGM: 38473585
+- Turma: Engenharia de Software, N1, noturno (disciplina optativa)
 
 ## Objetivo
 
 O plano de aulas prevê uma demonstração prática para a competência "identificar
-funcionamento de modelos generativos". Em vez de descrever o mecanismo em texto, eu
-implementei um modelo de linguagem mínimo e observei nele os comportamentos que os
-modelos grandes apresentam.
+funcionamento de modelos generativos". Para isso implementei um modelo de linguagem
+mínimo e observei nele os comportamentos que os modelos grandes apresentam.
 
-A pergunta que a atividade investiga é: quais comportamentos de um LLM são consequência
-direta da previsão do próximo token, e não de algum recurso adicional do produto?
+A pergunta que eu quis responder foi: quais comportamentos de um LLM vêm direto da
+previsão do próximo token, sem depender de algum recurso adicional do produto?
 
 ## Método
 
-Escrevi um modelo de bigrama em Python puro. O modelo lê um corpus de sete frases,
-conta quantas vezes cada palavra aparece depois de cada palavra, e transforma essas
-contagens em probabilidades. Para gerar texto, ele sorteia a próxima palavra respeitando
-essas probabilidades e realimenta o resultado.
+Escrevi um modelo de bigrama em Python puro. Ele lê um corpus de sete frases, conta
+quantas vezes cada palavra aparece depois de cada palavra e transforma essas contagens
+em probabilidades. Para gerar texto, sorteia a próxima palavra respeitando essas
+probabilidades e realimenta o resultado.
 
-É o modelo de linguagem mais simples que existe e não tem nada em comum com um
-Transformer em termos de arquitetura. Mas a etapa final é a mesma nos dois casos:
-transformar um contexto em uma distribuição de probabilidade e escolher um item dela.
-Os comportamentos que dependem só dessa etapa devem aparecer aqui também, e é isso que
-o experimento testa.
+É o modelo de linguagem mais simples que existe, e a arquitetura não tem nada em comum
+com a de um Transformer. Mas a etapa final é igual nos dois: transformar um contexto em
+uma distribuição de probabilidade e escolher um item dela. Se um comportamento depende
+só dessa etapa, ele deve aparecer aqui também, e foi isso que testei.
 
-Arquivo: [experimentos/proximo_token.py](experimentos/proximo_token.py)
-Saída completa: [experimentos/saida.txt](experimentos/saida.txt)
+O código está em [experimentos/proximo_token.py](experimentos/proximo_token.py) e a saída
+completa em [experimentos/saida.txt](experimentos/saida.txt).
 
 Reprodução:
 
@@ -40,10 +42,10 @@ python proximo_token.py
 A semente do gerador aleatório está fixada em 42, então a saída é idêntica em qualquer
 máquina.
 
-O corpus tem 47 tokens e 20 tokens distintos. Ele é pequeno de propósito: dá para
-conferir todas as contagens à mão e confirmar que os números da saída estão certos.
+O corpus tem 47 tokens e 20 tokens distintos. Deixei pequeno de propósito: assim dá
+para conferir todas as contagens à mão e confirmar que os números da saída estão certos.
 
-## Experimento 1: a saída é uma distribuição, não uma palavra
+## Experimento 1: a saída é uma distribuição de probabilidade
 
 Contexto testado: a palavra `um`.
 
@@ -57,15 +59,14 @@ Contexto testado: a palavra `um`.
 Conferindo no corpus: `um` aparece cinco vezes, seguido de `erro` em quatro delas e de
 `aviso` em uma. Os 80% e 20% batem exatamente com a contagem.
 
-O resultado reproduz a lógica do slide da aula, que mostrava `erro` com 85%, `aviso` com
-10% e `comportamento` com 5% para um contexto parecido. O ponto não são os valores em
-si, e sim o formato da saída: o modelo não devolve uma resposta, devolve um ranking com
-peso.
+O slide da aula mostrava, para um contexto parecido, `erro` com 85%, `aviso` com 10% e
+`comportamento` com 5%. Os valores aqui são outros, mas o formato da saída é o mesmo: o
+modelo devolve um ranking com pesos.
 
-Uma diferença importante em relação a um LLM real: aqui, tokens que nunca apareceram
-depois de `um` têm probabilidade zero. Em um Transformer, a camada final aplica softmax
-sobre o vocabulário inteiro, então nenhum token fica com probabilidade exatamente zero.
-Essa diferença é justamente o que explica o experimento 4.
+Tem uma diferença em relação a um LLM real. Aqui, tokens que nunca apareceram depois de
+`um` ficam com probabilidade zero. Em um Transformer, a camada final aplica softmax sobre
+o vocabulário inteiro, então nenhum token fica com probabilidade exatamente zero. Essa
+diferença é justamente o que explica o experimento 5.
 
 ## Experimento 2: a temperatura reescala a distribuição
 
@@ -77,18 +78,17 @@ Essa diferença é justamente o que explica o experimento 4.
    aviso               0.1%   20.0%   33.3%
 ```
 
-Com temperatura 0,2, a diferença entre 80% e 20% vira uma diferença entre 99,9% e 0,1%.
-A escolha deixa de ser sorteio na prática. Com temperatura 2,0, a distância entre as
-duas opções encolhe e o token menos provável ganha um terço da massa.
+Com temperatura 0,2, a diferença entre 80% e 20% vira uma diferença entre 99,9% e 0,1%,
+e na prática a escolha deixa de ser sorteio. Com temperatura 2,0 a distância entre as
+duas opções encolhe, e o token menos provável fica com um terço da massa.
 
-A implementação eleva cada probabilidade a `1/T` e normaliza de novo. É uma versão
-simplificada do que acontece nos modelos reais, onde a temperatura divide os logits
-antes da softmax, mas o efeito é o mesmo: temperatura baixa concentra, temperatura alta
-achata.
+A implementação eleva cada probabilidade a `1/T` e normaliza de novo. Nos modelos reais
+a temperatura divide os logits antes da softmax, então a minha versão é simplificada, mas
+o efeito é o mesmo: temperatura baixa concentra e temperatura alta achata.
 
-Isso explica por que documentações recomendam temperatura próxima de zero para geração
-de código e extração de dados. Nessas tarefas, escolher a segunda opção mais provável
-não é criatividade, é erro.
+Isso explica por que documentações recomendam temperatura próxima de zero para geração de
+código e extração de dados. Nessas tarefas, quando o modelo pega a segunda opção mais
+provável, o resultado é um erro.
 
 ## Experimento 3: o mesmo prompt não devolve a mesma resposta
 
@@ -112,17 +112,17 @@ As mesmas cinco execuções com temperatura 0,2:
    execucao 5: o codigo apresentou um erro de asercao o
 ```
 
-Com temperatura 1,0, as cinco saídas são diferentes entre si. Com temperatura 0,2, três
-das cinco convergem para a mesma frase. Nenhuma linha do código mudou entre as duas
-rodadas, apenas o parâmetro.
+Com temperatura 1,0 as cinco saídas são diferentes entre si. Com 0,2, três das cinco
+convergem para a mesma frase. Entre as duas rodadas só mudou o parâmetro; nenhuma linha
+do código foi alterada.
 
-Este é o experimento mais direto da atividade: a variabilidade que a gente observa ao
-repetir um prompt no ChatGPT ou no Copilot não é instabilidade do serviço nem falta de
-memória. É o sorteio.
+Esse é o experimento mais direto da atividade. Quando a gente repete um prompt no ChatGPT
+ou no Copilot e recebe outra resposta, o que está agindo é esse sorteio, e não
+instabilidade do serviço ou falta de memória.
 
 ## Experimento 4: o modelo combina o que viu e produz o que nunca viu
 
-Este resultado eu não tinha planejado e é o mais interessante da atividade.
+Eu não tinha planejado esse resultado, e foi o mais interessante da atividade.
 
 A execução 1, com temperatura 1,0, produziu:
 
@@ -131,20 +131,18 @@ o codigo apresentou um erro de depreciacao
 ```
 
 Essa frase não existe no corpus. O corpus tem `um erro de sintaxe`, `um erro de
-indentacao` e `um aviso de depreciacao`. O modelo combinou o começo de uma frase com o
-final de outra e gerou uma sentença nova, gramaticalmente correta e completamente
-plausível para quem lê.
+indentacao` e `um aviso de depreciacao`. O modelo juntou o começo de uma frase com o
+final de outra e gerou uma frase nova, gramaticalmente correta e plausível para quem lê.
 
-A execução 4 fez o mesmo, produzindo `um aviso de sintaxe`, que também não está no
-corpus.
+A execução 4 fez o mesmo e produziu `um aviso de sintaxe`, que também não está no corpus.
 
-Aqui está o mecanismo da alucinação, em um modelo com 47 tokens de treinamento. O modelo
-não copiou nada errado: ele seguiu a probabilidade token a token, e cada passo
-individual estava correto segundo o que ele aprendeu. O erro só existe quando alguém
-compara a frase inteira com a realidade, e essa comparação o modelo não faz.
+É o mecanismo da alucinação acontecendo num modelo treinado com 47 tokens. Nada foi
+copiado errado. O modelo seguiu a probabilidade token a token, e cada passo estava certo
+de acordo com o que ele aprendeu. O erro só aparece quando alguém compara a frase
+inteira com a realidade, e essa comparação o modelo não faz.
 
-É exatamente o formato de uma referência acadêmica inventada. O nome do autor é real, o
-título é plausível, o periódico existe, e a combinação dos três nunca foi publicada.
+Uma referência acadêmica inventada tem exatamente esse formato: o nome do autor é real,
+o título é plausível, o periódico existe, e a combinação dos três nunca foi publicada.
 
 ## Experimento 5: contexto fora do corpus
 
@@ -156,18 +154,18 @@ título é plausível, o periódico existe, e a combinação dos três nunca foi
 ```
 
 O modelo de bigrama para, porque não tem nenhuma contagem para esses contextos. Um LLM
-real não faz isso.
+real não para.
 
-Essa é a diferença que mais importa entre a maquete e o sistema real. Como o
-Transformer aplica softmax sobre um vocabulário fixo, a distribuição nunca fica vazia:
-sempre existe um token com a maior probabilidade, ainda que essa probabilidade seja
-baixa em termos absolutos. Não há caminho no mecanismo que leve a "sem continuação
+Para mim essa é a diferença que mais importa entre a maquete e o sistema real. Como o
+Transformer aplica softmax sobre um vocabulário fixo, a distribuição nunca fica vazia.
+Sempre existe um token com a maior probabilidade, ainda que essa probabilidade seja
+baixa em termos absolutos, e nenhum caminho no mecanismo leva a "sem continuação
 possível".
 
-Ou seja, a recusa educada de um assistente ("não tenho informação sobre isso") não vem
-da arquitetura. Ela vem da fase de alinhamento, em que o modelo foi treinado para
-produzir esse tipo de resposta em certas situações. É comportamento aprendido, e por
-isso não é confiável como sinal de que o modelo realmente não sabe.
+Então a recusa educada de um assistente ("não tenho informação sobre isso") vem da fase
+de alinhamento, em que o modelo foi treinado para responder assim em certas situações, e
+não da arquitetura. Como é comportamento aprendido, não dá para confiar nele como sinal
+de que o modelo realmente não sabe.
 
 ## Experimento 6: por que contar letras falha
 
@@ -178,57 +176,55 @@ isso não é confiável como sinal de que o modelo realmente não sabe.
    o modelo enxerga 1 unidade, nao 10 caracteres
 ```
 
-No meu modelo, o token é a palavra inteira. Em um LLM real, a tokenização é mais fina e
-uma palavra pode virar dois ou três tokens, mas a natureza do problema é a mesma: a
-unidade que o modelo manipula não é o caractere.
+No meu modelo, o token é a palavra inteira. Em um LLM real a tokenização é mais fina e
+uma palavra pode virar dois ou três tokens, mas o problema é o mesmo: a unidade que o
+modelo manipula não é o caractere.
 
-Pedir para um LLM contar letras é pedir uma operação sobre um nível de representação ao
-qual ele não tem acesso direto. Ele até acerta com frequência, porque viu muitos textos
-falando sobre soletração, mas está inferindo a resposta em vez de contar.
+Pedir para um LLM contar letras é pedir uma operação num nível de representação a que
+ele não tem acesso direto. Ele até acerta com frequência, porque viu muito texto sobre
+soletração, mas está inferindo a resposta, sem contar de fato.
 
 ## Tabela de resultados
 
 | Experimento | O que foi observado | Consequência para quem usa a ferramenta |
 |---|---|---|
-| 1 | saída é distribuição (80% / 20%) | não existe "a" resposta, existe a mais provável |
+| 1 | saída é distribuição (80% / 20%) | existe a resposta mais provável, entre várias possíveis |
 | 2 | T=0,2 vira 99,9% / 0,1% | temperatura baixa para código, alta para variação |
 | 3 | cinco saídas diferentes com T=1,0 | repetir o prompt não é teste de correção |
-| 4 | gerou frase inexistente no corpus | alucinação é recombinação provável, não cópia errada |
-| 5 | o bigrama para, o LLM não pararia | recusa é comportamento treinado, não sinal de limite |
+| 4 | gerou frase inexistente no corpus | alucinação é recombinação provável de trechos que existem, e não cópia errada |
+| 5 | o bigrama para, o LLM não pararia | recusa é comportamento treinado e não indica limite do modelo |
 | 6 | token é a unidade, não o caractere | tarefas de contagem exigem verificação externa |
 
 ## Limitações do experimento
 
-Registro para não superestimar o que foi demonstrado.
+Um bigrama olha só para o token anterior. Um Transformer usa atenção sobre a sequência
+inteira, e é isso que permite manter coerência ao longo de páginas em vez de gerar
+frases soltas. Nada aqui mostra como a atenção funciona.
 
-Um bigrama olha apenas para o token anterior. Um Transformer usa atenção sobre a
-sequência inteira, o que é a diferença entre gerar frases soltas e manter coerência ao
-longo de páginas. Nada aqui demonstra como a atenção funciona.
+O corpus tem 47 tokens, contra os trilhões usados no pré-treinamento de um modelo atual.
+Essa diferença de escala muda a qualidade e também faz surgir capacidades que não
+existem em escala pequena.
 
-O corpus tem 47 tokens contra os trilhões usados no pré-treinamento de um modelo atual.
-A escala não muda apenas a qualidade, ela faz surgir capacidades que não existem em
-escala pequena.
+O modelo também não passou por ajuste de instrução nem por alinhamento. Ele só continua
+texto e não responde perguntas.
 
-E o modelo aqui não passou por ajuste de instrução nem por alinhamento. Ele continua
-texto, não responde perguntas.
-
-O que o experimento demonstra, dentro dessas limitações, é a etapa final compartilhada:
-transformar contexto em distribuição e amostrar. Os seis comportamentos observados
-derivam só dessa etapa, e é por isso que aparecem tanto no bigrama quanto no LLM.
+Dentro desses limites, o experimento mostra a etapa final que os dois modelos têm em
+comum: transformar contexto em distribuição e amostrar. Os seis comportamentos
+observados vêm só dessa etapa, por isso aparecem tanto no bigrama quanto no LLM.
 
 ## Conclusão
 
-O que eu esperava confirmar era a variabilidade da saída. O que apareceu de fato foi
-mais forte do que isso: a alucinação surgiu espontaneamente na primeira execução, sem
-que eu tivesse construído nada no corpus para provocá-la.
+Eu esperava confirmar a variabilidade da saída. O que apareceu foi mais forte: a
+alucinação surgiu sozinha na primeira execução, sem que eu tivesse montado nada no
+corpus para provocar isso.
 
-Isso mudou a forma como eu enxergo o problema. Antes eu tratava a alucinação como uma
-falha que modelos melhores vão corrigir. Depois deste experimento, ficou claro que ela é
-o mesmo mecanismo que produz as respostas certas, operando sobre uma combinação que não
-corresponde a nada real. Um modelo maior alucina menos porque tem mais dados para
-tornar as combinações erradas menos prováveis, mas o mecanismo continua sendo o mesmo.
+Isso mudou o jeito como eu vejo o problema. Antes eu tratava a alucinação como uma
+falha que modelos melhores iam corrigir. Depois deste experimento, passei a ver que ela
+é o mesmo mecanismo que produz as respostas certas, aplicado a uma combinação que não
+corresponde a nada real. Um modelo maior alucina menos porque tem mais dados para tornar
+as combinações erradas menos prováveis, mas o mecanismo continua o mesmo.
 
-A consequência prática para as próximas aulas é direta. Se a arquitetura e os dados de
+Para as próximas aulas a consequência prática é direta. A arquitetura e os dados de
 treinamento estão fora do meu alcance, e a única entrada que eu controlo é o texto do
-prompt, então escrever esse texto de forma deliberada não é uma questão de estilo. É a
-única alavanca disponível.
+prompt. Então escrever esse texto de forma deliberada é o único jeito que eu tenho de
+influenciar a resposta.

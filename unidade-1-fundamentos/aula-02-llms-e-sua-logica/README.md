@@ -10,38 +10,38 @@ Código do experimento: [experimentos/proximo_token.py](experimentos/proximo_tok
 ## O que é um LLM
 
 LLM é a sigla de Large Language Model, modelo de linguagem de grande porte. É uma rede
-neural treinada com um objetivo bem mais simples do que o comportamento final sugere:
-dado um trecho de texto, prever qual é a próxima unidade da sequência.
+neural treinada para uma tarefa bem mais simples do que o comportamento final faz
+parecer: dado um trecho de texto, prever qual é a próxima unidade da sequência.
 
-Todo o resto (responder pergunta, escrever código, resumir documento, traduzir) é
-consequência de fazer essa previsão bem o suficiente e repetidas vezes. O modelo prevê
-uma unidade, acrescenta essa unidade ao texto, e prevê de novo com o texto já
-atualizado.
+Responder pergunta, escrever código, resumir documento e traduzir saem todos dessa
+previsão, feita bem o bastante e repetidas vezes. O modelo prevê uma unidade, acrescenta
+essa unidade ao texto e prevê de novo com o texto já atualizado.
 
-A arquitetura usada pelos modelos atuais é o Transformer, proposto em 2017 no artigo
-*Attention Is All You Need*. O mecanismo central é a atenção, que permite ao modelo
-pesar quais partes do texto de entrada são relevantes para prever a próxima unidade,
-em vez de tratar a sequência posição por posição.
+Os modelos atuais usam a arquitetura Transformer, proposta em 2017 no artigo
+*Attention Is All You Need*. A peça principal dela é a atenção, que deixa o modelo pesar
+quais partes do texto de entrada importam para prever a próxima unidade, sem precisar
+percorrer a sequência posição por posição.
 
-## Token, não palavra
+## Tokens
 
-O texto não entra no modelo em forma de letras nem de palavras. Ele é fatiado em
-tokens, que são pedaços de tamanho variável. Palavras comuns costumam virar um token
-só, palavras raras são quebradas em vários, e espaço e pontuação também contam.
+O texto não entra no modelo como letras nem como palavras. Ele é fatiado em tokens,
+pedaços de tamanho variável. Palavras comuns costumam virar um token só, palavras raras
+são quebradas em vários, e espaço e pontuação também contam.
 
-Isso explica um comportamento que parece absurdo à primeira vista: um modelo capaz de
-escrever um algoritmo de ordenação erra ao contar quantas letras "r" existem em uma
-palavra. Ele nunca viu as letras. Ele viu um token, que para ele é uma unidade
-indivisível, do mesmo jeito que nós não enxergamos os bytes de um caractere.
+Isso explica uma coisa que parece absurda à primeira vista: um modelo capaz de escrever
+um algoritmo de ordenação erra ao contar quantas letras "r" existem em uma palavra. As
+letras nunca chegaram até ele. O que
+chegou foi um token, que para o modelo é uma unidade indivisível, mais ou menos como a
+gente não enxerga os bytes de um caractere.
 
-A quantidade de tokens também é a unidade de medida do custo e do limite de uma
-requisição. Quando se fala em janela de contexto de N tokens, é disso que se trata.
+A quantidade de tokens também é a medida do custo e do limite de uma requisição. A
+janela de contexto de N tokens se refere a isso.
 
 ## Previsão do próximo token
 
-Diante de um contexto, o modelo não devolve uma palavra. Ele devolve uma distribuição
-de probabilidade sobre todo o vocabulário. Para o contexto "o código apresentou um", a
-saída teria uma forma parecida com esta:
+Para um contexto qualquer, o modelo devolve uma distribuição de probabilidade sobre todo
+o vocabulário. Com o contexto "o código apresentou um", a saída teria uma forma parecida
+com esta:
 
 ```
 erro            85%
@@ -50,21 +50,20 @@ comportamento    5%
 ...              resto do vocabulário, com probabilidades muito baixas
 ```
 
-Duas consequências importantes saem daí.
+Daí saem duas consequências.
 
-A primeira é que nenhum token tem probabilidade exatamente zero. A camada final aplica
-uma função softmax, que distribui a massa de probabilidade sobre o vocabulário inteiro.
-Não existe estado de "não sei responder" no mecanismo: sempre haverá um token mais
-provável, mesmo quando o contexto é absurdo. É por isso que o modelo continua
-respondendo com desenvoltura sobre assuntos que ele não conhece.
+Nenhum token fica com probabilidade exatamente zero. A camada final aplica uma função
+softmax, que espalha a massa de probabilidade pelo vocabulário inteiro. O mecanismo não
+tem um estado de "não sei responder": sempre vai existir um token mais provável, mesmo
+quando o contexto é absurdo. É por isso que o modelo continua respondendo com
+desenvoltura sobre assuntos que não conhece.
 
-A segunda é que a resposta é o resultado de uma escolha dentro dessa distribuição, e
-não da leitura de um valor armazenado. O modelo não guarda a frase certa em algum
-lugar para recuperá-la.
+Além disso, a resposta sai de uma escolha feita dentro dessa distribuição. O modelo não
+tem a frase certa guardada em algum lugar para ir buscar.
 
 ## Temperatura e amostragem
 
-O parâmetro que controla como a escolha é feita dentro da distribuição é a temperatura.
+A temperatura é o parâmetro que controla como essa escolha é feita.
 
 | Temperatura | Efeito | Uso típico |
 |---|---|---|
@@ -72,81 +71,78 @@ O parâmetro que controla como a escolha é feita dentro da distribuição é a 
 | em torno de 1 | mantém a distribuição como o modelo a calculou | conversa de uso geral |
 | acima de 1 | achata a distribuição e aumenta a chance de tokens improváveis | brainstorming, variação criativa |
 
-Existem outros mecanismos de corte usados junto com a temperatura, como top-k (só os k
-tokens mais prováveis podem ser sorteados) e top-p ou nucleus sampling (só os tokens
-que somam p de probabilidade acumulada). Todos servem para o mesmo fim: decidir o quão
-longe do topo da distribuição a escolha pode ir.
+Junto com a temperatura também se usam mecanismos de corte, como top-k (só os k tokens
+mais prováveis podem ser sorteados) e top-p ou nucleus sampling (só os tokens que somam
+p de probabilidade acumulada). Todos decidem a mesma coisa: até onde, a partir do topo
+da distribuição, a escolha pode ir.
 
-Isso responde a uma pergunta prática que aparece o tempo todo: por que o mesmo prompt
-devolve respostas diferentes. Porque, com temperatura acima de zero, há sorteio. Não é
-instabilidade nem defeito, é o modo de operação.
+Isso responde uma dúvida que aparece o tempo todo, a de por que o mesmo prompt devolve
+respostas diferentes. Com temperatura acima de zero existe sorteio, então a variação é o
+funcionamento normal do modelo.
 
 ## Como o modelo é treinado
 
-O treinamento acontece em fases, e cada fase explica um comportamento diferente:
+O treinamento acontece em fases, e cada uma explica um comportamento diferente.
 
-1. **Pré-treinamento.** O modelo lê um volume enorme de texto e aprende a prever o
-   próximo token. É aqui que ele adquire gramática, estrutura de código e conhecimento
-   factual. É também aqui que ele absorve os vieses presentes nesse texto.
-2. **Ajuste por instrução.** O modelo é treinado com pares de instrução e resposta para
-   aprender a se comportar como assistente, e não apenas a continuar o texto.
-3. **Alinhamento com preferência humana.** Avaliadores humanos comparam respostas e
-   esse sinal é usado para ajustar o modelo. É o que torna a resposta educada, formatada
-   e recusável em certos casos.
+1. Pré-treinamento. O modelo lê um volume enorme de texto e aprende a prever o próximo
+   token. Nessa fase ele adquire gramática, estrutura de código e conhecimento factual,
+   e também absorve os vieses presentes nesse texto.
+2. Ajuste por instrução. O modelo é treinado com pares de instrução e resposta. Antes
+   disso ele só continua texto; com esse ajuste aprende a se comportar como assistente.
+3. Alinhamento com preferência humana. Avaliadores humanos comparam respostas e esse
+   sinal é usado para ajustar o modelo. Daí vem a resposta educada e formatada, e também
+   a recusa em certos casos.
 
-O ponto que merece atenção é que a fase 3 otimiza o modelo para produzir respostas que
-pessoas consideram boas. Uma resposta segura, bem escrita e confiante é avaliada como
-boa por um humano ainda que esteja errada. O treinamento, portanto, tem um incentivo
-embutido para a resposta parecer correta, e nenhum mecanismo direto para garantir que
-ela seja.
+A fase 3 otimiza o modelo para produzir respostas que pessoas consideram boas. Só que um
+avaliador humano dá nota boa a uma resposta segura, bem escrita e confiante mesmo quando
+ela está errada. Então o treinamento incentiva a resposta a parecer correta e não tem
+nenhum mecanismo direto que garanta que ela esteja.
 
 ## Por que os modelos alucinam
 
-Reunindo as peças anteriores, a alucinação deixa de ser um mistério:
+Juntando o que veio antes, dá para explicar a alucinação:
 
-- o modelo escolhe a continuação mais provável, e provável não é sinônimo de verdadeiro;
+- o modelo escolhe a continuação mais provável, e o mais provável nem sempre é verdadeiro;
 - não existe estado interno de "desconhecido", porque a softmax sempre produz um vencedor;
 - o treinamento premia respostas que parecem boas;
-- o modelo não consulta fonte alguma no momento de responder, a menos que a ferramenta
-  em volta dele faça uma busca e insira o resultado no contexto.
+- o modelo não consulta fonte nenhuma na hora de responder, a menos que a ferramenta em
+  volta dele faça uma busca e coloque o resultado no contexto.
 
-Uma referência inventada é o caso mais didático. O modelo aprendeu o formato de uma
-citação acadêmica, aprendeu nomes de autores da área e aprendeu títulos plausíveis.
-Combinar as três coisas produz uma citação com estrutura perfeita e que não existe.
+O exemplo mais fácil de entender é a referência inventada. O modelo aprendeu o formato de
+uma citação acadêmica, nomes de autores da área e títulos plausíveis. Combinando isso,
+sai uma citação com a estrutura certinha de um trabalho que não existe.
 
 ## Limite de conhecimento e contexto
 
-Um LLM tem uma data de corte de conhecimento: o que aconteceu depois do treinamento não
-está nos pesos do modelo. Quando um assistente responde corretamente sobre um evento
-recente, quase sempre é porque a ferramenta fez uma busca e colocou o texto encontrado
-no contexto antes de perguntar ao modelo.
+Um LLM tem uma data de corte de conhecimento. O que aconteceu depois do treinamento não
+está nos pesos do modelo. Quando um assistente acerta algo sobre um evento recente, quase
+sempre foi porque a ferramenta fez uma busca e colocou o texto encontrado no contexto
+antes de perguntar ao modelo.
 
-Isso separa dois tipos de informação que o modelo usa:
+Então o modelo trabalha com dois tipos de informação:
 
 | Origem | Onde está | Como corrigir se estiver errada |
 |---|---|---|
 | Conhecimento paramétrico | codificado nos pesos, vindo do treinamento | não dá para corrigir na hora, só contornar |
 | Contexto | o texto que eu envio no prompt | reescrever o prompt |
 
-Essa é a razão prática de colar o trecho de código, a regra de negócio ou o enunciado
-dentro do prompt em vez de descrevê-lo de memória. O que está no contexto é a única
-parte que está sob meu controle.
+Por isso compensa colar no prompt o trecho de código, a regra de negócio ou o enunciado,
+em vez de descrever de memória. O contexto é a única parte que fica sob meu controle.
 
 ## O que isso muda para quem usa
 
 | Comportamento observado | Explicação pelo mecanismo |
 |---|---|
 | A mesma pergunta gera respostas diferentes | há amostragem sobre uma distribuição |
-| O modelo erra ao contar letras ou sílabas | ele opera sobre tokens, não caracteres |
-| Ele inventa referência com formato perfeito | aprendeu o formato, não a existência |
+| O modelo erra ao contar letras ou sílabas | ele opera sobre tokens, e não sobre caracteres |
+| Ele inventa referência com formato perfeito | aprendeu o formato da citação, sem saber se a obra existe |
 | Ele nunca diz que não sabe, a menos que treinado para isso | não existe distribuição vazia |
 | Prompt mais específico melhora a resposta | reduz a incerteza sobre qual continuação é a esperada |
-| Colar o material funciona melhor que citá-lo | contexto é editável, pesos não são |
+| Colar o material funciona melhor que citá-lo | o contexto pode ser editado, os pesos não |
 
-A conclusão que abre a aula seguinte é esta: como não dá para alterar a arquitetura nem
-os dados de treinamento, a única variável sob controle do usuário é o texto de entrada.
-Estruturar esse texto de forma deliberada é o que a disciplina chama de Engenharia de
-Prompt.
+Daí sai a conclusão que abre a aula seguinte. Como o usuário não consegue alterar a arquitetura
+nem os dados de treinamento, o que sobra sob controle dele é o texto de entrada.
+Estruturar esse texto de propósito é o que a disciplina chama de Engenharia de Prompt.
 
 ## Referências
 
