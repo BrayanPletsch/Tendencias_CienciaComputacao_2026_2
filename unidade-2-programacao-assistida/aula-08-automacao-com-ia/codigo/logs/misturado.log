@@ -1,0 +1,11 @@
+INFO - servidor iniciado
+INFORMATION - começa com INFO mas é outro nível
+info - nível em minúsculo
+ERROR - falha ao gravar o relatório
+ERROR: sem o traço
+
+WARNING - disco em 91%
+  INFO - espaço antes do nível
+INFO - mensagem que cita ERROR no meio
+ERROR - 
+DEBUG - nível que não entra na contagem
