@@ -1,0 +1,86 @@
+Data de referência dos testes: 2026-11-26
+
+ok    [Classificação: linguagem formal] defeito_produto: "Adquiri um refrigerador que apresentou defeito no compressor após duas semanas de uso."
+ok    [Classificação: linguagem formal] arrependimento: "Gostaria de exercer o direito de arrependimento de uma compra realizada pela internet."
+ok    [Classificação: linguagem formal] cobranca_indevida: "Identifiquei uma cobrança indevida em minha fatura do cartão de crédito."
+ok    [Classificação: linguagem formal] nao_solicitado: "Foi incluído um seguro em minha fatura sem minha autorização."
+ok    [Classificação: linguagem formal] oferta_descumprida: "O produto adquirido não foi entregue no prazo informado pela loja."
+ok    [Classificação: linguagem formal] servico_mal_prestado: "O serviço de instalação foi executado de forma inadequada pelo prestador."
+ok    [Classificação: linguagem informal] defeito_produto: "comprei uma geladeira e ela pifou, nao gela nada"
+ok    [Classificação: linguagem informal] arrependimento: "comprei um tenis no site e nao gostei, quero devolver"
+ok    [Classificação: linguagem informal] cobranca_indevida: "me cobraram duas vezes a mesma coisa no cartao"
+ok    [Classificação: linguagem informal] nao_solicitado: "colocaram um seguro no meu cartao que eu nunca pedi"
+ok    [Classificação: linguagem informal] oferta_descumprida: "meu pedido ainda nao chegou e ja passou do prazo"
+ok    [Classificação: linguagem informal] servico_mal_prestado: "o pedreiro deixou a obra pela metade"
+ok    [Classificação: linguagem com erro de digitação] defeito_produto: "comprei um celular e veio com defeto, a tela ta quebarda"
+ok    [Classificação: linguagem com erro de digitação] arrependimento: "me arependi da compra q fiz no app, quero desistir"
+ok    [Classificação: linguagem com erro de digitação] cobranca_indevida: "cobranssa indevida na minha conta de luz"
+ok    [Classificação: linguagem com erro de digitação] nao_solicitado: "eu nao contratei esse pacote e tao me cobrando"
+ok    [Classificação: linguagem com erro de digitação] oferta_descumprida: "a encomenda atrazou e nao chego ate hj"
+ok    [Classificação: linguagem com erro de digitação] servico_mal_prestado: "servisso mal feito do tecnico que veio aqui"
+ok    [Classificação: linguagem com expressão regional] defeito_produto: "a maquina de lavar arriou com uma semana de uso, deu prego de vez"
+ok    [Classificação: linguagem com expressão regional] arrependimento: "comprei uma blusa pelo zap e quero desfazer o negocio, me arrependi"
+ok    [Classificação: linguagem com expressão regional] cobranca_indevida: "a operadora meteu uma cobranca a mais na minha conta, ta errado isso"
+ok    [Classificação: linguagem com expressão regional] nao_solicitado: "enfiaram um seguro na minha conta sem eu pedir, que absurdo"
+ok    [Classificação: linguagem com expressão regional] oferta_descumprida: "a mercadoria nao veio ate hoje e o entregador sumiu"
+ok    [Classificação: linguagem com expressão regional] servico_mal_prestado: "o encanador fez um servico porco, ficou tudo vazando"
+ok    [Prazos e regras] arrependimento pela internet há 5 dias fica dentro do prazo
+ok    [Prazos e regras] arrependimento com recebimento há 10 dias fica fora do prazo e sem reclamação
+ok    [Prazos e regras] compra há 10 dias faz a Lia perguntar quando o produto chegou
+ok    [Prazos e regras] arrependimento em loja física não gera reclamação pelo art. 49
+ok    [Prazos e regras] defeito em produto durável recebido há 60 dias está dentro dos 90 dias
+ok    [Prazos e regras] defeito em produto que acaba rápido recebido há 40 dias passou dos 30 dias
+ok    [Prazos e regras] defeito escondido conta o prazo de quando apareceu
+ok    [Prazos e regras] serviço durável terminado há 100 dias passou do prazo
+ok    [Prazos e regras] cobrança já paga leva à devolução em dobro
+ok    [Prazos e regras] cobrança por algo não pedido e não pago vira amostra grátis
+ok    [Prazos e regras] data escrita como 20/11 vira 6 dias
+ok    [Prazos e regras] "faz duas semanas" vira 14 dias
+ok    [Fora do escopo] trabalho: encaminha em vez de orientar
+ok    [Fora do escopo] aluguel: encaminha em vez de orientar
+ok    [Fora do escopo] particular: encaminha em vez de orientar
+ok    [Fora do escopo] golpe: encaminha em vez de orientar
+ok    [Fora do escopo] acidente: encaminha em vez de orientar
+ok    [Privacidade] CPF digitado é apagado antes de ir para a memória e para a ficha
+ok    [Privacidade] telefone, e-mail e número de cartão também são apagados
+ok    [Privacidade] memória curta guarda no máximo 6 mensagens
+ok    [Privacidade] apagar a conversa zera a memória e a ficha
+ok    [Privacidade] o registro para curadoria não guarda o texto digitado
+ok    [Adversarial] pedido para ignorar as regras não muda o comportamento
+ok    [Adversarial] pergunta sobre valor de indenização não recebe número
+ok    [Adversarial] xingamento recebe resposta calma e a reclamação continua educada
+ok    [Adversarial] mensagem vazia não quebra o agente
+ok    [Adversarial] resposta sem sentido duas vezes faz a Lia seguir com a informação em aberto
+ok    [Estresse] mensagem de 5.000 caracteres é cortada em 1000
+ok    [Estresse] 1.000 conversas seguidas rodam em menos de 2 segundos
+ok    [Regressão] "colocaram" não é confundido com "clonaram" (golpe)
+ok    [Regressão] "feita" não é confundido com "festa" e a reforma conta como durável
+
+Resumo por grupo:
+  Classificação: linguagem formal: 6/6
+  Classificação: linguagem informal: 6/6
+  Classificação: linguagem com erro de digitação: 6/6
+  Classificação: linguagem com expressão regional: 6/6
+  Prazos e regras: 12/12
+  Fora do escopo: 5/5
+  Privacidade: 5/5
+  Adversarial: 5/5
+  Estresse: 2/2
+  Regressão: 2/2
+
+Total: 55/55 testes passaram.
+
+Conjunto de validação (frases novas, não usadas no ajuste):
+  errou   "o ventilador queimou na primeira semana" -> nao_entendi (esperado defeito_produto)
+  errou   "a air fryer chegou toda amassada" -> nao_entendi (esperado defeito_produto)
+  acertou "quero cancelar a compra que fiz pelo instagram, mudei de ideia" -> arrependimento (esperado arrependimento)
+  errou   "comprei um vestido online e nao ficou bom, quero mandar de volta" -> nao_entendi (esperado arrependimento)
+  acertou "a fatura veio com um valor que eu nao reconheco" -> cobranca_indevida (esperado cobranca_indevida)
+  acertou "estao me cobrando um boleto que ja quitei" -> cobranca_indevida (esperado cobranca_indevida)
+  acertou "ativaram um pacote de internet sem eu pedir" -> nao_solicitado (esperado nao_solicitado)
+  errou   "chegou um cartao de credito na minha casa que eu nunca solicitei" -> nao_entendi (esperado nao_solicitado)
+  errou   "a loja vendeu e depois disse que nao tinha estoque" -> nao_entendi (esperado oferta_descumprida)
+  errou   "o anuncio dizia frete gratis e me cobraram o frete" -> cobranca_indevida (esperado oferta_descumprida)
+  errou   "o tecnico da internet veio e nao resolveu nada" -> nao_entendi (esperado servico_mal_prestado)
+  errou   "a dedetizacao nao adiantou nada, as baratas continuam" -> nao_entendi (esperado servico_mal_prestado)
+  Acertos: 4/12
