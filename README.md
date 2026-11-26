@@ -76,14 +76,14 @@ Os testes do CEP não usam a rede. Só o `executar_casos.py` da aula 06 consulta
 verdade e precisa de internet.
 
 Agente da Unidade 4: abra
-`unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/agente/landing.html` no
-navegador para ver a apresentação do projeto, ou `agente/index.html` na mesma pasta para ir
-direto para a Lia. As demonstrações da apresentação ficam em `index.html?exemplo=1` até
+`unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/agente/index.html` no
+navegador para ver a apresentação do projeto, ou `agente/conversa.html` na mesma pasta para ir
+direto para a Lia. As demonstrações da apresentação ficam em `conversa.html?exemplo=1` até
 `?exemplo=4`. Para os testes (Node.js 18 ou mais novo):
 
 ```bash
 cd unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/agente
-node testes.js
+node testes/testes.js
 ```
 
 ## Uso de IA neste repositório

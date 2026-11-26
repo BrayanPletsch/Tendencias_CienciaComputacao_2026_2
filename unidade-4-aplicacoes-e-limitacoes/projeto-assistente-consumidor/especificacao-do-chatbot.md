@@ -50,8 +50,8 @@ O fluxo sugere uma pasta por tipo de material. Adaptei para o repositório:
 |---|---|
 | Acervo oficial | Texto do CDC e boletim da Senacon, citados nas referências do [README](README.md) |
 | Id. visual e persona | Seção 3 deste documento, [agente/estilos/tokens.css](agente/estilos/tokens.css) e o [design system](agente/design-system.html) |
-| Modelagem | [agente/base-conhecimento.js](agente/base-conhecimento.js) e a seção 5 deste documento |
-| Testes | [agente/testes.js](agente/testes.js) e [casos-de-teste.md](casos-de-teste.md) |
+| Modelagem | [agente/scripts/nucleo/base-conhecimento.js](agente/scripts/nucleo/base-conhecimento.js) e a seção 5 deste documento |
+| Testes | [agente/testes/testes.js](agente/testes/testes.js) e [casos-de-teste.md](casos-de-teste.md) |
 | Divulgação | [slides/apresentacao.pptx](slides/apresentacao.pptx) |
 | Entregas | [evidencias/](evidencias/) |
 | Versões do modelo | o histórico do git |
@@ -151,7 +151,7 @@ Design conversacional:
 | Regras de conduta | pedido de indenização, xingamento, CPF digitado, "ignore suas regras" | nenhuma | recusa calcular indenização, mantém o tom educado, apaga o dado e avisa, ignora o pedido |
 
 Os gatilhos completos, com os pesos, estão em
-[agente/base-conhecimento.js](agente/base-conhecimento.js). Quando dois casos aparecem
+[agente/scripts/nucleo/base-conhecimento.js](agente/scripts/nucleo/base-conhecimento.js). Quando dois casos aparecem
 juntos com pontuação parecida, vale uma regra de precedência: "não pedi" ganha de
 "cobrança", e "defeito" ganha de "arrependimento", porque o caso mais específico traz o
 direito mais forte. Sem regra de precedência, a Lia pergunta qual dos dois é.
@@ -183,10 +183,11 @@ em negrito.
 
 ## 7. Implementar o chatbot
 
-A implementação está em [agente/](agente/): as quatro camadas em `agente.js`, a base de
-conhecimento em `base-conhecimento.js`, os estilos em `estilos/` e a tela em `index.html` com
-os scripts de `ui/`. A página de apresentação, `landing.html`, explica o projeto e leva para a
-Lia. Os componentes da tela são funções que recebem dados e devolvem
+A implementação está em [agente/](agente/): as quatro camadas em `scripts/nucleo/agente.js`,
+a base de conhecimento em `scripts/nucleo/base-conhecimento.js`, os estilos em `estilos/` e a
+tela em `conversa.html`, com os componentes de `scripts/ui/` e o controlador
+`scripts/paginas/conversa.js`. A página de apresentação, `index.html`, explica o projeto e leva
+para a Lia. Os componentes da tela são funções que recebem dados e devolvem
 elementos, e um controlador guarda o estado da conversa. Todo texto que a pessoa digita é
 inserido na página como texto puro, nunca como HTML. Assim, um relato com uma tag no meio
 aparece como texto e não altera a página.

@@ -11,9 +11,9 @@ Projeto: [Lia, assistente de reclamação do consumidor](projeto-assistente-cons
 | Data | Tarefa | Valor | Onde está |
 |---|---|---|---|
 | 05/11 | Criação de agentes de IA | 1,0 | código em [agente/](projeto-assistente-consumidor/agente/) e seções 3 a 6 do [README do projeto](projeto-assistente-consumidor/README.md): modelo generativo ou agente, quatro camadas, prompt dinâmico e memória |
-| 12/11 | Chatbot e ferramentas de chatbot, com a especificação | 1,0 | [especificacao-do-chatbot.md](projeto-assistente-consumidor/especificacao-do-chatbot.md), nas 11 etapas do Serpro Bots, a [landing](projeto-assistente-consumidor/agente/landing.html) que apresenta o projeto, a interface em [agente/index.html](projeto-assistente-consumidor/agente/index.html) e o [design system](projeto-assistente-consumidor/agente/design-system.html) |
+| 12/11 | Chatbot e ferramentas de chatbot, com a especificação | 1,0 | [especificacao-do-chatbot.md](projeto-assistente-consumidor/especificacao-do-chatbot.md), nas 11 etapas do Serpro Bots, a [landing](projeto-assistente-consumidor/agente/index.html) que apresenta o projeto, a interface em [agente/conversa.html](projeto-assistente-consumidor/agente/conversa.html) e o [design system](projeto-assistente-consumidor/agente/design-system.html) |
 | 19/11 | Viés algorítmico e responsabilidade social | 1,0 | [etica-e-vies.md](projeto-assistente-consumidor/etica-e-vies.md) e os testes de equidade em [casos-de-teste.md](projeto-assistente-consumidor/casos-de-teste.md) |
-| 26/11 | Apresentação do projeto de solução inteligente | 1,0 | [slides/apresentacao.pptx](projeto-assistente-consumidor/slides/apresentacao.pptx) e a demonstração ao vivo em `agente/index.html?exemplo=1` até `?exemplo=4` |
+| 26/11 | Apresentação do projeto de solução inteligente | 1,0 | [slides/apresentacao.pptx](projeto-assistente-consumidor/slides/apresentacao.pptx) e a demonstração ao vivo em `agente/conversa.html?exemplo=1` até `?exemplo=4` |
 | 26/11 | Integrar conceitos em solução aplicada: repositório GitHub | 1,0 | este repositório, com as quatro unidades da disciplina |
 
 ## O que o guia da A1 cobra

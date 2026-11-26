@@ -17,8 +17,8 @@ confere os prazos e as regras do Código de Defesa do Consumidor (CDC) e devolve
 orientação junto com um texto de reclamação pronto para mandar à empresa, ao
 consumidor.gov.br ou ao Procon.
 
-Para usar, basta abrir no navegador a [página de apresentação](agente/landing.html) ou ir
-direto para a Lia em [agente/index.html](agente/index.html). Não precisa instalar nada nem ter
+Para usar, basta abrir no navegador a [página de apresentação](agente/index.html) ou ir
+direto para a Lia em [agente/conversa.html](agente/conversa.html). Não precisa instalar nada nem ter
 chave de API.
 
 ![Tela inicial da Lia, com os seis tipos de caso](evidencias/inicio.png)
@@ -101,7 +101,7 @@ flowchart LR
     A --> P
 ```
 
-| Camada | O que faz na Lia | Função em [agente.js](agente/agente.js) |
+| Camada | O que faz na Lia | Função em [agente.js](agente/scripts/nucleo/agente.js) |
 |---|---|---|
 | Perceptiva | Lê até 1.000 caracteres, apaga CPF, telefone, e-mail e número de cartão antes de qualquer análise e normaliza o texto (minúsculas, sem acento) | `perceber` |
 | Cognitiva | Dá pontos a cada caso conforme os gatilhos encontrados, com tolerância a erro de digitação, e extrai onde a compra foi feita, há quantos dias, se o produto dura, se a pessoa já pagou e se havia prazo de entrega | `entender` |
@@ -113,21 +113,23 @@ indicaram o caso, as regras aplicadas, os artigos usados e a confiança na ident
 
 ### A interface
 
-São três páginas, todas em `agente/`. A [landing](agente/landing.html) apresenta o projeto, a
-[Lia](agente/index.html) é a conversa e o [design system](agente/design-system.html) documenta
+São três páginas, todas em `agente/`. A [landing](agente/index.html) apresenta o projeto, a
+[Lia](agente/conversa.html) é a conversa e o [design system](agente/design-system.html) documenta
 as cores, a tipografia, os movimentos e todos os componentes. A ideia do visual é "a lei,
 grifada": tinta e papel para quase tudo, um azul cobalto para as ações e o amarelo de
 marca-texto só no que decide, como o prazo e os campos que a pessoa precisa completar.
 
 Os estilos começam por `tokens.css` (as cores do tema claro e do escuro), `base.css` e
-`componentes.css`, que as três páginas usam. Depois vem o arquivo de cada página: `layout.css`
-na Lia, `landing.css` na landing e `guia.css` no design system. Os componentes usam só os
+`componentes.css`, que as três páginas usam. Depois vem o arquivo de cada página, em
+`estilos/paginas/`: `landing.css`, `conversa.css` e `design-system.css`. Os componentes usam só os
 tokens, então o tema escuro troca os valores e nunca os nomes. O tema escolhido numa página
 vale na outra, e o design system fica sempre no claro.
 
-No JavaScript, cada parte tem um papel. O agente (`agente.js`) não conhece a tela. Os
-componentes (`ui/componentes.js`) recebem dados e devolvem elementos, sem guardar estado. O
-controlador (`ui/aplicacao.js`) guarda a conversa e liga os eventos. A página do design system
+O JavaScript segue a mesma divisão. O núcleo (`scripts/nucleo/`) tem o agente e a base de
+conhecimento e não conhece a tela, por isso roda também no Node, nos testes. Em `scripts/ui/`
+ficam os ícones, o tema e os componentes, que recebem dados e devolvem elementos, sem guardar
+estado. Cada página tem o seu controlador em `scripts/paginas/`, com o mesmo nome do estilo
+dela; o da conversa (`conversa.js`) guarda a conversa e liga os eventos. A página do design system
 usa os mesmos componentes e monta os exemplos pedindo respostas reais ao agente, e a tabela de
 cores lê os valores do próprio `tokens.css`, então nada da tela é copiado à mão. Todo texto
 que vem da pessoa entra na página com `textContent`, nunca como HTML.
@@ -205,7 +207,7 @@ Visão à curadoria: [especificacao-do-chatbot.md](especificacao-do-chatbot.md).
 
 ## 9. Testes
 
-A bateria fica em [agente/testes.js](agente/testes.js) e os resultados em
+A bateria fica em [agente/testes/testes.js](agente/testes/testes.js) e os resultados em
 [casos-de-teste.md](casos-de-teste.md).
 
 | Rodada | Resultado |
@@ -254,10 +256,11 @@ Limitações:
 
 ## 12. Como rodar
 
-1. Abra [agente/landing.html](agente/landing.html) para ver a apresentação do projeto, ou
-   [agente/index.html](agente/index.html) para ir direto para a Lia. Os cartões de caso da
-   landing abrem a Lia com o relato já escrito no campo (`index.html?relato=...`), sem enviar.
-2. Para as demonstrações da apresentação, abra `index.html?exemplo=1` até `?exemplo=4`:
+1. Abra [agente/index.html](agente/index.html) para ver a apresentação do projeto, ou
+   [agente/conversa.html](agente/conversa.html) para ir direto para a Lia. Os cartões de caso
+   da landing abrem a Lia com o relato já escrito no campo (`conversa.html?relato=...`), sem
+   enviar.
+2. Para as demonstrações da apresentação, abra `conversa.html?exemplo=1` até `?exemplo=4`:
    fogão com defeito, compra em loja física, cobrança em dobro com CPF digitado e um caso
    trabalhista. Acrescentar `&tema=escuro` força o tema escuro, e `&foto` mostra a página
    inteira sem rolagem, que é como as telas de `evidencias/` foram tiradas.
@@ -266,13 +269,13 @@ Limitações:
 
 ```bash
 cd unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/agente
-node testes.js
+node testes/testes.js
 ```
 
-Para ter uma versão online, dá para ligar o GitHub Pages do repositório (Settings > Pages >
-branch `main`). A Lia fica em
+A versão online está no GitHub Pages do repositório (Settings > Pages > branch `main`). A
+landing fica em
 `https://brayanpletsch.github.io/Tendencias_CienciaComputacao_2026_2/unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/agente/`
-e a landing no mesmo endereço, terminado em `landing.html`.
+e a Lia no mesmo endereço, terminado em `conversa.html`.
 
 O formulário de contato usa o FormSubmit. Na primeira mensagem, o serviço manda para o
 endereço do formulário um e-mail de ativação, que precisa ser confirmado. Depois disso ele
@@ -287,16 +290,20 @@ projeto-assistente-consumidor/
 ├── etica-e-vies.md                privacidade, viés, frameworks éticos e licença social
 ├── casos-de-teste.md              rodadas de teste, validação e equidade
 ├── agente/
-│   ├── landing.html               página de apresentação do projeto
-│   ├── index.html                 a tela do chat
+│   ├── index.html                 landing, a página de apresentação do projeto
+│   ├── conversa.html              a Lia, a tela da conversa
 │   ├── design-system.html         cores, tipos, movimentos e componentes
 │   ├── favicon.svg, favicon.ico   ícone da aba (e apple-touch-icon.png, para o celular)
-│   ├── agente.js                  as quatro camadas
-│   ├── base-conhecimento.js       casos, gatilhos, artigos e textos da Lia
-│   ├── testes.js                  bateria de testes
-│   ├── resultado-dos-testes.txt   saída da última execução
-│   ├── estilos/                   tokens.css, base.css, componentes.css, layout.css, landing.css, guia.css
-│   └── ui/                        icones.js, componentes.js, tema.js, aplicacao.js, landing.js, design-system.js
+│   ├── estilos/
+│   │   ├── tokens.css             cores e sombras do tema claro e do escuro
+│   │   ├── base.css               reset, foco, rolagem e utilitários
+│   │   ├── componentes.css        peças usadas pelas três páginas
+│   │   └── paginas/               landing.css, conversa.css, design-system.css
+│   ├── scripts/
+│   │   ├── nucleo/                agente.js (as quatro camadas) e base-conhecimento.js
+│   │   ├── ui/                    icones.js, tema.js e componentes.js
+│   │   └── paginas/               landing.js, conversa.js, design-system.js
+│   └── testes/                    testes.js e resultado-dos-testes.txt (saída da última execução)
 ├── evidencias/                    telas da landing, da Lia e do design system
 └── slides/apresentacao.pptx       apresentação final
 ```
@@ -306,7 +313,7 @@ projeto-assistente-consumidor/
 Usei o Claude (Anthropic) como apoio para programar o agente e revisar os textos. O visual foi
 desenhado com o Claude Design e implementado com o Claude Code. As regras jurídicas foram
 conferidas no texto oficial do CDC, e os números de teste citados aqui vêm da execução de
-[agente/testes.js](agente/testes.js). A Lia em si não usa IA generativa.
+[agente/testes/testes.js](agente/testes/testes.js). A Lia em si não usa IA generativa.
 
 ## Referências
 

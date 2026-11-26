@@ -1,16 +1,16 @@
 # Casos de teste
 
-A bateria está em [agente/testes.js](agente/testes.js) e roda com Node.js, sem nenhuma
+A bateria está em [agente/testes/testes.js](agente/testes/testes.js) e roda com Node.js, sem nenhuma
 dependência:
 
 ```bash
 cd agente
-node testes.js            # mostra o resultado
-node testes.js --salvar   # também grava resultado-dos-testes.txt
+node testes/testes.js            # mostra o resultado
+node testes/testes.js --salvar   # também grava testes/resultado-dos-testes.txt
 ```
 
 Os testes usam 26/11/2026 como data de hoje, para os prazos darem sempre o mesmo resultado. A
-saída da última execução está em [agente/resultado-dos-testes.txt](agente/resultado-dos-testes.txt).
+saída da última execução está em [agente/testes/resultado-dos-testes.txt](agente/testes/resultado-dos-testes.txt).
 
 ## Grupos
 
