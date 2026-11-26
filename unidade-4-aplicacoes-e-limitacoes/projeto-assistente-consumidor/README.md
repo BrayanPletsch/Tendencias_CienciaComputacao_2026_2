@@ -507,8 +507,9 @@ node testes/testes.js --salvar   # também grava testes/resultado-dos-testes.txt
 ### O formulário de contato
 
 O formulário da página inicial usa o FormSubmit. Na primeira mensagem, o serviço manda para
-o endereço do formulário um e-mail de ativação, que precisa ser confirmado. Depois disso ele
-envia um código que pode substituir o endereço no `action` do formulário.
+o dono do formulário um e-mail de ativação, que precisa ser confirmado (no meu caso, ele caiu
+no spam). Esse e-mail traz um código que substitui o endereço no `action` do formulário, e é
+ele que o site usa, para o meu e-mail não ficar à mostra no HTML.
 
 ## Estrutura
 
