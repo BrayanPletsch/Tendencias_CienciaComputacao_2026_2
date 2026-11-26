@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design system da Lia</title>
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/tokens.css">
+  <link rel="stylesheet" href="estilos/base.css">
+  <link rel="stylesheet" href="estilos/componentes.css">
+  <link rel="stylesheet" href="estilos/layout.css">
+  <link rel="stylesheet" href="estilos/landing.css">
+  <link rel="stylesheet" href="estilos/guia.css">
+</head>
+<body class="raiz guia">
+  <header class="guia__cabecalho">
+    <div class="wrap guia__barra">
+      <a href="landing.html" class="voltar"><span data-icone="seta-esquerda"></span>Voltar ao site</a>
+    </div>
+    <div class="wrap guia__topo">
+      <div class="guia__marca">
+        <span class="marca">lia</span>
+        <p class="ey">Design system · novembro de 2026</p>
+      </div>
+      <div class="guia__abertura">
+        <h1>A lei, <span class="grifo">grifada.</span></h1>
+        <p>A Lia lê o Código de Defesa do Consumidor e marca o trecho que vale para o seu caso. A interface faz o mesmo: tinta e papel para tudo, um azul para agir e o amarelo de marca-texto só no que importa.</p>
+      </div>
+      <ol class="principios">
+        <li><span class="mono">01</span><strong>Grife só o que decide</strong><span>Um grifo por bloco: o prazo, o direito, o campo a completar. Se tudo é grifo, nada é.</span></li>
+        <li><span class="mono">02</span><strong>Uma ação azul por tela</strong><span>O cobalto é o próximo passo. O resto é contorno ou link.</span></li>
+        <li><span class="mono">03</span><strong>Legível com pressa</strong><span>Corpo de 17px, alvos de 44px, contraste AA nos dois temas.</span></li>
+      </ol>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="guia__secao" aria-labelledby="titulo-cor">
+      <div class="guia__cabeca">
+        <p class="ey">Cor</p>
+        <h2 id="titulo-cor">Tinta, papel, cobalto e marca-texto</h2>
+        <p>Os componentes usam só os tokens semânticos abaixo. O tema escuro troca os valores, nunca os nomes. A tabela lê os valores do próprio tokens.css.</p>
+      </div>
+      <div class="cores" id="cores"></div>
+      <div class="tabela">
+        <table class="tk">
+          <thead><tr><th scope="col" class="ey">Token</th><th scope="col" class="ey">Claro</th><th scope="col" class="ey">Escuro</th><th scope="col" class="ey">Uso</th></tr></thead>
+          <tbody id="tokens"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guia__secao" aria-labelledby="titulo-tipografia">
+      <div class="guia__cabeca">
+        <p class="ey">Tipografia</p>
+        <h2 id="titulo-tipografia">Uma grotesca de jornal e uma mono para a lei</h2>
+        <p>Schibsted Grotesk faz títulos e texto; o peso muda o papel. JetBrains Mono marca artigos, rótulos e contagens.</p>
+      </div>
+      <div class="tipos">
+        <div><span class="mono tipos__rotulo">800 · 96 · −5,5% · número</span><span class="t-numero">85 dias</span></div>
+        <div><span class="mono tipos__rotulo">800 · 64 · −4,5% · título</span><span class="t-titulo">O que aconteceu?</span></div>
+        <div><span class="mono tipos__rotulo">800 · 24 · −2,5% · seção</span><span class="t-secao">O que a lei garante</span></div>
+        <div><span class="mono tipos__rotulo">400 · 20 · abertura</span><span class="t-abertura">Escreva do seu jeito, como se contasse para alguém.</span></div>
+        <div><span class="mono tipos__rotulo">400 · 17 · corpo</span><span class="t-corpo">Loja e fabricante respondem juntos pelos defeitos que tornam o produto impróprio para uso.</span></div>
+        <div><span class="mono tipos__rotulo">Mono 500 · 12 e 13</span><span class="t-mono"><span class="ey">Ficha do caso</span><span class="mono">ART. 18, § 1º</span></span></div>
+      </div>
+    </section>
+
+    <section class="guia__secao" aria-labelledby="titulo-marca">
+      <div class="guia__cabeca">
+        <p class="ey">Marca e ícones</p>
+        <h2 id="titulo-marca">"lia" em minúsculas, sempre sobre o amarelo</h2>
+        <p>A marca é tinta sobre marca-texto nos dois temas e também faz o papel de avatar nas mensagens. Os ícones são do Lucide (licença ISC), com traço de 2 px e sem preenchimento.</p>
+      </div>
+      <div class="pecas">
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Tamanhos da marca</strong><span>Cada lugar usa um tamanho fixo.</span></div>
+          <ul class="marcas" id="marcas"></ul>
+        </div>
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Favicon</strong><span>As letras são o contorno real da Schibsted Grotesk 800, então o ícone não depende de fonte instalada.</span></div>
+          <div class="favicons">
+            <figure><img src="favicon.svg" width="64" height="64" alt="Favicon da Lia em 64 px"><figcaption class="mono">64</figcaption></figure>
+            <figure><img src="favicon.svg" width="32" height="32" alt="Favicon da Lia em 32 px"><figcaption class="mono">32</figcaption></figure>
+            <figure><img src="favicon.ico" width="16" height="16" alt="Favicon da Lia em 16 px"><figcaption class="mono">16</figcaption></figure>
+            <figure><img src="apple-touch-icon.png" width="64" height="64" alt="Ícone da Lia para a tela inicial do celular"><figcaption class="mono">TELA INICIAL</figcaption></figure>
+          </div>
+          <p class="peca__nota">favicon.svg para os navegadores atuais, favicon.ico com 16, 32 e 48 px e apple-touch-icon.png com 180 px.</p>
+        </div>
+        <div class="peca peca--larga">
+          <div class="peca__cabeca"><strong>Ícones</strong><span>Todos os ícones que a plataforma usa. Botão só com ícone sempre leva rótulo para leitor de tela.</span></div>
+          <ul class="icones-grade" id="icones"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="guia__secao" aria-labelledby="titulo-espaco">
+      <div class="guia__cabeca">
+        <p class="ey">Espaço, raio e sombra</p>
+        <h2 id="titulo-espaco">Medidas que se repetem</h2>
+        <p>Os espaços e os raios usados nas três páginas, e as larguras em que o layout muda.</p>
+      </div>
+      <div class="pecas">
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Espaços</strong><span>Em pixels. A margem lateral é clamp(20px, 5vw, 56px) no app e clamp(20px, 5vw, 48px) na landing e aqui.</span></div>
+          <ul class="espacos" id="espacos"></ul>
+        </div>
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Raios</strong><span>Cantos secos nos blocos de leitura e redondos só no que se toca muito.</span></div>
+          <ul class="raios" id="raios"></ul>
+        </div>
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Sombras</strong><span>No tema escuro as duas viram um contorno fino.</span></div>
+          <div class="sombras">
+            <div class="sombras__amostra sombras__amostra--leve"><span class="mono">--sombra</span><span>Cartão de orientação e formulário</span></div>
+            <div class="sombras__amostra sombras__amostra--alta"><span class="mono">--sombra-alta</span><span>Cartão da demonstração e gaveta da ficha</span></div>
+          </div>
+        </div>
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Larguras em que o layout muda</strong><span>O app tem um ponto de quebra só; a landing tem alguns a mais.</span></div>
+          <table class="tk tk--curta">
+            <thead><tr><th scope="col" class="ey">Largura</th><th scope="col" class="ey">O que muda</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">≤ 1099</td><td>A linha final dos footers escuros empilha autoria e aviso</td></tr>
+              <tr><td class="mono">≤ 1023</td><td>O header da landing fica preso no topo, mais fino, e o menu vira o botão de três barras</td></tr>
+              <tr><td class="mono">≤ 900</td><td>O footer da landing passa para duas colunas</td></tr>
+              <tr><td class="mono">≤ 859</td><td>App de celular: a ficha vira gaveta e aparece a faixa de progresso</td></tr>
+              <tr><td class="mono">≤ 640</td><td>Seções da landing com menos espaço e botão de topo menor</td></tr>
+              <tr><td class="mono">≤ 520</td><td>Footer da landing em uma coluna e carimbo da demonstração embaixo do número</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="guia__secao" aria-labelledby="titulo-movimento">
+      <div class="guia__cabeca">
+        <p class="ey">Movimento</p>
+        <h2 id="titulo-movimento">Cinco gestos, nada além</h2>
+        <p>Cada animação imita uma coisa do papel. Com "reduzir movimento" ligado no sistema, tudo aparece já no estado final.</p>
+      </div>
+      <div class="gestos">
+        <div class="gesto">
+          <div class="gesto__palco"><span class="grifo demo-grifo">seu direito</span></div>
+          <strong>Grifo</strong><span class="mono">1000 MS · EASE-IN-OUT</span><span class="gesto__texto">Marca a frase-chave quando o título entra.</span>
+        </div>
+        <div class="gesto">
+          <div class="gesto__palco"><span class="mono demo-carimbo">DENTRO DO PRAZO</span></div>
+          <strong>Carimbo</strong><span class="mono">500 MS · LEVE REBOTE</span><span class="gesto__texto">Confirma a situação do prazo, uma vez só.</span>
+        </div>
+        <div class="gesto">
+          <div class="gesto__palco"><span class="tarja-amostra"><span class="mono">123.456.789-00</span><span class="demo-tarja" aria-hidden="true"></span></span></div>
+          <strong>Tarja</strong><span class="mono">600 MS · EASE-IN-OUT</span><span class="gesto__texto">Cobre um dado pessoal removido do texto.</span>
+        </div>
+        <div class="gesto">
+          <div class="gesto__palco"><span class="demo-sobe">Orientação pronta</span></div>
+          <strong>Entrada</strong><span class="mono">700 MS · 16 PX PARA CIMA</span><span class="gesto__texto">A resposta da Lia sobe e aparece.</span>
+        </div>
+        <div class="gesto">
+          <div class="gesto__palco gesto__palco--topo">
+            <span class="topo-amostra" role="img" aria-label="Amostra do botão de voltar ao topo"><span class="topo-anel"></span><span class="topo-miolo"><span data-icone="seta-cima"></span></span></span>
+          </div>
+          <strong>Voltar ao topo</strong><span class="mono">ANEL 3 S · ENTRADA 420 MS</span><span class="gesto__texto">Só na landing. Aparece depois de 600 px de rolagem; o anel em degradê gira sem parar.</span>
+        </div>
+      </div>
+      <div class="tabela">
+        <table class="tk tk--tempos">
+          <thead><tr><th scope="col" class="ey">Onde</th><th scope="col" class="ey">Duração</th><th scope="col" class="ey">Atraso</th><th scope="col" class="ey">Curva</th><th scope="col" class="ey">O que acontece</th></tr></thead>
+          <tbody>
+            <tr><td>Relato e lista de casos do app</td><td class="mono">700 ms</td><td class="mono">0 e 140 ms</td><td class="mono">cubic-bezier(.2,.7,.2,1)</td><td>Sobem 16 px e aparecem</td></tr>
+            <tr><td>Mensagem nova</td><td class="mono">300 ms</td><td class="mono">0</td><td class="mono">cubic-bezier(.2,.7,.2,1)</td><td>Sobe 12 px e aparece</td></tr>
+            <tr><td>Cartão de orientação</td><td class="mono">700 ms</td><td class="mono">0</td><td class="mono">cubic-bezier(.2,.7,.2,1)</td><td>Sobe 16 px e aparece</td></tr>
+            <tr><td>Barra do prazo</td><td class="mono">1200 ms</td><td class="mono">500 ms</td><td class="mono">cubic-bezier(.2,.7,.2,1)</td><td>Enche até os dias usados</td></tr>
+            <tr><td>Carimbo do prazo</td><td class="mono">500 ms</td><td class="mono">900 ms</td><td class="mono">cubic-bezier(.3,1.5,.5,1)</td><td>Bate girado, com um leve rebote</td></tr>
+            <tr><td>Lia escrevendo</td><td class="mono">1 s, sem parar</td><td class="mono">0, 150 e 300 ms</td><td class="mono">ease-in-out</td><td>Três pontos pulsam</td></tr>
+            <tr><td>Espera antes da resposta</td><td class="mono">450 ms</td><td class="mono">n/a</td><td class="mono">n/a</td><td>Zero com movimento reduzido</td></tr>
+            <tr><td>Gaveta da ficha e véu</td><td class="mono">320 e 240 ms</td><td class="mono">0</td><td class="mono">cubic-bezier(.2,.7,.2,1) e ease</td><td>A gaveta entra pela direita e o véu escurece</td></tr>
+            <tr><td>Hover e foco</td><td class="mono">160 a 220 ms</td><td class="mono">0</td><td class="mono">ease</td><td>Fundo dos botões, borda do campo, seta dos casos, giro do "Por que recebi"</td></tr>
+            <tr><td>Entrada do herói da landing</td><td class="mono">800 ms</td><td class="mono">0 a 320 ms</td><td class="mono">cubic-bezier(.2,.7,.2,1)</td><td>Cada bloco sobe 20 px, um depois do outro</td></tr>
+            <tr><td>Grifo do título da landing</td><td class="mono">1000 ms</td><td class="mono">650 ms</td><td class="mono">cubic-bezier(.65,0,.35,1)</td><td>O marca-texto passa da esquerda para a direita</td></tr>
+            <tr><td>Demonstração do herói</td><td class="mono">10 s, sem parar</td><td class="mono">0</td><td class="mono">várias</td><td>O relato é digitado, o prazo conta até 85, as linhas entram e o carimbo bate</td></tr>
+            <tr><td>Faixa de frases</td><td class="mono">55 s, sem parar</td><td class="mono">0</td><td class="mono">linear</td><td>As frases correm para a esquerda</td></tr>
+            <tr><td>Tarja do CPF</td><td class="mono">6 s, sem parar</td><td class="mono">0</td><td class="mono">cubic-bezier(.65,0,.35,1)</td><td>A tarja cobre o número e mostra DADO REMOVIDO</td></tr>
+            <tr><td>Fio do header da landing no celular</td><td class="mono">240 ms</td><td class="mono">0</td><td class="mono">ease</td><td>Aparece quando a página sai do topo e some quando volta</td></tr>
+            <tr><td>Menu da landing no celular</td><td class="mono">320 ms</td><td class="mono">0</td><td class="mono">cubic-bezier(.2,.7,.2,1)</td><td>O painel desce embaixo do header e as três barras viram um X</td></tr>
+            <tr><td>Cartão de caso da landing</td><td class="mono">220 ms</td><td class="mono">0</td><td class="mono">cubic-bezier(.2,.7,.2,1)</td><td>Sobe 4 px e a borda fica azul</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guia__secao" aria-labelledby="titulo-componentes">
+      <div class="guia__cabeca">
+        <p class="ey">Componentes</p>
+        <h2 id="titulo-componentes">As peças da conversa</h2>
+        <p>Montadas com as mesmas funções da conversa, a partir de respostas reais da Lia.</p>
+      </div>
+      <div class="pecas">
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Botões e links</strong><span>Raio de 12px, altura de 52px (44px no topo). Cobalto só para o próximo passo.</span></div>
+          <div class="peca__linha" id="peca-botoes">
+            <button type="button" class="btn">Enviar relato<span data-icone="seta-direita"></span></button>
+            <button type="button" class="btn2">Baixar .txt</button>
+          </div>
+          <div class="peca__linha">
+            <button type="button" class="btn2 btn--topo"><span data-icone="recomecar"></span>Nova conversa</button>
+            <button type="button" class="btn-ico" aria-label="Ativar tema escuro"><span data-icone="lua"></span></button>
+            <button type="button" class="btn-ico" aria-label="Ver ficha do caso"><span data-icone="documento"></span></button>
+            <button type="button" class="btn-ico" aria-label="Fechar ficha do caso"><span data-icone="fechar"></span></button>
+          </div>
+          <div class="peca__linha"><a href="landing.html" class="voltar"><span data-icone="seta-esquerda"></span>Voltar ao site</a></div>
+        </div>
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Respostas rápidas e selos</strong><span>Chips para responder com um toque. Selos sempre com ícone e palavra.</span></div>
+          <div class="estados" id="peca-chips"></div>
+          <div class="peca__linha peca__linha--selos" id="peca-selos"></div>
+        </div>
+        <div class="peca peca--larga">
+          <div class="peca__cabeca"><strong>Campo de mensagem</strong><span>Um formulário só, que muda de forma: grande no início e em linha durante a conversa, preso no pé da tela. O aviso de não digitar dados pessoais acompanha o campo.</span></div>
+          <div class="campos-amostra">
+            <div class="compositor compositor--grande">
+              <div class="compositor__caixa">
+                <textarea rows="3" aria-label="Exemplo do campo grande" placeholder="Ex.: comprei um celular pela internet e veio com a tela quebrada"></textarea>
+                <div class="compositor__rodape">
+                  <p class="compositor__dica">Enter envia · Shift + Enter pula linha · 0/1000</p>
+                  <button type="button" class="btn">Enviar relato<span data-icone="seta-direita"></span></button>
+                </div>
+              </div>
+            </div>
+            <p class="aviso-digitar"><span class="selo selo--alerta" aria-hidden="true">!</span>Não digite CPF, senha nem número de cartão.</p>
+            <div class="compositor compositor--linha">
+              <div class="compositor__caixa">
+                <textarea rows="1" aria-label="Exemplo do campo em linha" placeholder="Escreva uma dúvida ou um novo detalhe"></textarea>
+                <button type="button" class="btn btn--enviar-ico" aria-label="Enviar mensagem"><span data-icone="seta-cima"></span></button>
+              </div>
+              <p class="compositor__aviso">Não digite CPF, senha nem número de cartão.</p>
+            </div>
+          </div>
+        </div>
+        <div class="peca peca--larga">
+          <div class="peca__cabeca"><strong>Casos do início</strong><span>O resumo aparece; o relato de exemplo é o que vai para a Lia quando a pessoa toca.</span></div>
+          <div id="peca-casos"></div>
+        </div>
+        <div class="peca peca--larga">
+          <div class="peca__cabeca"><strong>Ficha do caso</strong><span>Painel fixo à esquerda no computador e gaveta pela direita no celular. Antes do caso aparecem as três etapas; depois, o andamento, o título, a confiança e os dados.</span></div>
+          <div class="paineis" id="peca-ficha"></div>
+          <div class="peca__subtitulo mono">Faixa de progresso do celular</div>
+          <div class="moveis" id="peca-progresso"></div>
+          <div class="peca__subtitulo mono">Aviso fixo no pé do painel</div>
+          <div class="lado__privacidade guia__privacidade">
+            <span data-icone="cadeado"></span>
+            <div>
+              <strong>Tudo fica neste navegador</strong>
+              <p>CPF, telefone, e-mail e cartão são apagados antes da análise. Fechou a página, o caso some.</p>
+            </div>
+          </div>
+        </div>
+        <div class="peca peca--larga">
+          <div class="peca__cabeca"><strong>Mensagens</strong><span>A pessoa fala num balão de tinta à direita; dado pessoal vira uma tarja amarela. A Lia fala sem balão, com a marca no lugar do avatar, e as respostas rápidas ficam dentro da mensagem.</span></div>
+          <div class="mensagens guia__conversa" id="peca-mensagens"></div>
+        </div>
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Bloco de prazo</strong><span>Abre toda orientação. O número em marca-texto sobre tinta.</span></div>
+          <div id="peca-prazo"></div>
+        </div>
+        <div class="peca peca--lei" id="peca-lei">
+          <div class="peca__cabeca"><strong>Lei, passo e reclamação</strong><span>Fios de 1px entre itens, nunca caixas dentro de caixas.</span></div>
+        </div>
+        <div class="peca peca--larga">
+          <div class="peca__cabeca"><strong>Bloco de prazo em cada situação</strong><span>Prazo correndo, vencido, sem data, sem durabilidade, direito que não se aplica e os direitos sem prazo. O texto de baixo é sempre o do agente, sem mudar uma palavra.</span></div>
+          <div class="prazos" id="peca-prazos"></div>
+        </div>
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Explicação e avaliação</strong><span>Toda resposta mostra o que pesou na decisão e pergunta se ajudou. A avaliação entra no registro de curadoria.</span></div>
+          <div class="estados" id="peca-porque"></div>
+        </div>
+        <div class="peca">
+          <div class="peca__cabeca"><strong>Avisos</strong><span>Amarelo para o dado pessoal apagado; o aviso legal fecha toda orientação.</span></div>
+          <div class="estados" id="peca-avisos"></div>
+        </div>
+        <div class="peca peca--larga">
+          <div class="peca__cabeca"><strong>Orientação completa</strong><span>Prazo, o que a lei garante, o que fazer agora, os documentos e o texto da reclamação num cartão só, com o aviso legal no fim.</span></div>
+          <div class="mensagens guia__conversa" id="peca-orientacao"></div>
+        </div>
+        <div class="peca peca--larga">
+          <div class="peca__cabeca"><strong>Rodapé do app</strong><span>Aviso de protótipo e links em cima, autoria embaixo.</span></div>
+          <div class="guia__rodape-app" id="peca-rodape"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guia__secao" aria-labelledby="titulo-landing">
+      <div class="guia__cabeca">
+        <p class="ey">Landing</p>
+        <h2 id="titulo-landing">As peças da página de apresentação</h2>
+        <p>Os blocos que só existem na landing, com os mesmos estilos de lá.</p>
+      </div>
+      <div class="landing guia__landing">
+        <div class="pecas">
+          <div class="peca">
+            <div class="peca__cabeca"><strong>Demonstração do herói</strong><span>Um ciclo de 10 s: o relato é digitado, o prazo conta até 85 e o carimbo bate.</span></div>
+            <div class="guia__palco">
+              <div class="demo">
+                <div class="demo__cartao">
+                  <div class="demo__topo">
+                    <p class="ey">Seu relato</p>
+                    <span class="marca">lia</span>
+                  </div>
+                  <div class="demo__relato"><span class="digita">Comprei um fogão pelo site há 5 dias e ele não liga</span></div>
+                  <div class="resp">
+                    <div class="demo__prazo">
+                      <p class="ey">Prazo para reclamar</p>
+                      <p class="demo__valor"><span class="conta" aria-hidden="true"></span><span class="so-leitor">85</span><span class="demo__unidade">dias</span><span class="demo__de">de 90</span></p>
+                      <span class="carimbo">Dentro do prazo</span>
+                    </div>
+                    <div class="demo__lei entra"><span class="mono">ART. 18</span><span>Loja e fabricante respondem juntos pelo defeito.</span></div>
+                    <div class="demo__lei entra" style="--atraso: 220ms"><span class="mono">ART. 26</span><span>90 dias para produto feito para durar.</span></div>
+                    <div class="demo__pronta entra" style="--atraso: 440ms">
+                      <span><span data-icone="confere"></span>Reclamação pronta</span>
+                      <span class="mono">COPIAR</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="peca">
+            <div class="peca__cabeca"><strong>Menu do celular</strong><span>Abaixo de 1024 px o header da landing fica preso no topo com 64px de altura; o fio de baixo só aparece depois que a página rola. O menu abre num painel logo embaixo, com os links separados por fios e o GitHub, que só existe aqui, e fecha no X, no Esc, num link ou tocando fora.</span></div>
+            <div class="peca__linha">
+              <div class="estado"><p class="peca__subtitulo mono">Fechado</p><button type="button" class="btn-ico menu-botao" aria-label="Menu fechado" aria-expanded="false"><span class="menu-botao__icone" aria-hidden="true"><span></span><span></span><span></span></span></button></div>
+              <div class="estado"><p class="peca__subtitulo mono">Aberto</p><button type="button" class="btn-ico menu-botao" aria-label="Menu aberto" aria-expanded="true"><span class="menu-botao__icone" aria-hidden="true"><span></span><span></span><span></span></span></button></div>
+            </div>
+          </div>
+          <div class="peca">
+            <div class="peca__cabeca"><strong>Cartões de caso</strong><span>Levam para a Lia com o relato já escrito no campo, sem enviar.</span></div>
+            <div class="vitrine guia__vitrine" id="peca-vitrine">
+              <a href="index.html" class="caso" data-caso="defeito_produto">
+                <span class="caso__nome">Produto com defeito</span>
+                <span class="caso__fala"></span>
+                <span class="caso__pe"><span class="mono">ARTS. 18 E 26</span><span data-icone="seta-direita"></span></span>
+              </a>
+              <a href="index.html" class="caso" data-caso="cobranca_indevida">
+                <span class="caso__nome">Cobrança indevida</span>
+                <span class="caso__fala"></span>
+                <span class="caso__pe"><span class="mono">ART. 42</span><span data-icone="seta-direita"></span></span>
+              </a>
+            </div>
+          </div>
+          <div class="peca peca--larga">
+            <div class="peca__cabeca"><strong>Faixa de frases</strong><span>Na landing ela corre sem parar, com uma segunda cópia escondida para o recomeço não aparecer. Aqui fica parada.</span></div>
+            <div class="faixa">
+              <div class="trilho">
+                <div class="trilho__lista">
+                  <span>“o celular veio com a tela quebrada”</span><span class="trilho__sinal" aria-hidden="true">§</span>
+                  <span>“a geladeira deu prego”</span><span class="trilho__sinal" aria-hidden="true">§</span>
+                  <span>“o fogão arriou”</span><span class="trilho__sinal" aria-hidden="true">§</span>
+                  <span>“serviço porco”</span><span class="trilho__sinal" aria-hidden="true">§</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="peca peca--larga">
+            <div class="peca__cabeca"><strong>Como funciona</strong><span>Três passos com fio de 2px em cima; o último em cobalto.</span></div>
+            <ol class="tres-passos">
+              <li>
+                <span class="mono">01</span>
+                <h3>Você conta</h3>
+                <p>Do jeito que contaria para um amigo. Não precisa saber o nome do problema nem o artigo da lei.</p>
+                <div class="ilustra ilustra--balao"><span>o fogão arriou depois de 5 dias</span></div>
+              </li>
+              <li>
+                <span class="mono">02</span>
+                <h3>A Lia pergunta o que falta</h3>
+                <p>Uma pergunta por vez, com respostas prontas para tocar. Só o necessário para calcular o prazo certo.</p>
+                <div class="ilustra ilustra--pergunta">
+                  <span>Você comprou pela internet ou na loja?</span>
+                  <span class="ilustra__chips"><span class="chip chip-on">Pela internet</span><span class="chip">Na loja</span></span>
+                </div>
+              </li>
+              <li>
+                <span class="mono">03</span>
+                <h3>Você sai com tudo pronto</h3>
+                <p>O prazo que sobra, o que a lei garante, os documentos para juntar e o texto da reclamação.</p>
+                <div class="ilustra ilustra--prazo"><span class="ilustra__numero">85</span><span class="ilustra__unidade">dias</span><span class="ilustra__de">para reclamar</span></div>
+              </li>
+            </ol>
+          </div>
+          <div class="peca">
+            <div class="peca__cabeca"><strong>Números</strong><span>Os dados do README, com o grifo no que importa.</span></div>
+            <div class="numeros">
+              <div><span class="numeros__valor">1.414.218</span><span>reclamações finalizadas no consumidor.gov.br em 2024</span></div>
+              <div><span class="numeros__valor"><span class="grifo">82,32%</span></span><span>foram resolvidas pelas empresas</span></div>
+              <p class="mono numeros__fonte">Fonte: Senacon, Boletim Consumidor.gov.br 2024</p>
+            </div>
+          </div>
+          <div class="peca">
+            <div class="peca__cabeca"><strong>Limites</strong><span>Lista numerada com fios, a primeira frase de cada item em negrito.</span></div>
+            <ol class="limites__lista">
+              <li><span class="mono">01</span><span><strong>Não envia a reclamação por você.</strong> O envio fica nas suas mãos, porque um prazo errado em seu nome é difícil de desfazer.</span></li>
+              <li><span class="mono">02</span><span><strong>Não calcula indenização.</strong> Ela orienta o pedido, não o valor.</span></li>
+            </ol>
+          </div>
+          <div class="peca peca--larga">
+            <div class="peca__cabeca"><strong>Bloco de privacidade</strong><span>Bloco escuro de raio 28px. A tarja amarela cobre o CPF num ciclo de 6 s.</span></div>
+            <div class="privacidade">
+              <div class="privacidade__texto">
+                <p class="ey">Privacidade</p>
+                <h2>O que você escreve não sai do seu computador.</h2>
+                <ul>
+                  <li><span data-icone="confere"></span>CPF, telefone, e-mail e número de cartão são apagados antes de qualquer análise.</li>
+                  <li><span data-icone="confere"></span>Nada fica guardado: fechou a página, o caso some.</li>
+                </ul>
+              </div>
+              <div class="leitura">
+                <p class="ey">O que a Lia lê</p>
+                <p class="leitura__frase">Me cobraram duas vezes, meu CPF é <span class="cpf"><span class="mono">123.456.789-00</span><span class="tarja" aria-hidden="true"></span><span class="tarja-txt mono" aria-hidden="true">DADO REMOVIDO</span></span></p>
+                <p class="leitura__nota"><span data-icone="cadeado"></span>O número nunca chega à parte que analisa o caso.</p>
+              </div>
+            </div>
+          </div>
+          <div class="peca peca--larga">
+            <div class="peca__cabeca"><strong>Chamada final e contato</strong><span>As duas últimas seções, separadas por um fio de 2px. O formulário de contato é a única parte do site que manda dados pela internet, pelo FormSubmit.</span></div>
+            <div class="chamada-final">
+              <h2>Conte o que <span class="grifo">aconteceu.</span></h2>
+              <div class="chamada-final__acao">
+                <a href="index.html" class="btn">Abrir a Lia<span data-icone="seta-direita"></span></a>
+                <p>Leva poucos minutos. Funciona no navegador, sem cadastro.</p>
+              </div>
+            </div>
+            <div class="contato guia__contato">
+              <div class="bloco-texto">
+                <p class="ey">Contato</p>
+                <h2>Gostou do projeto? Vamos <span class="grifo">conversar.</span></h2>
+                <a class="btn contato__portfolio" data-portfolio>Ver meu portfólio<span data-icone="seta-direita"></span></a>
+              </div>
+              <div class="contato__form">
+                <div class="contato__campo">
+                  <label for="amostra-nome">Nome</label>
+                  <input id="amostra-nome" type="text" autocomplete="off">
+                </div>
+                <div class="contato__campo">
+                  <label for="amostra-mensagem">Mensagem</label>
+                  <textarea id="amostra-mensagem" rows="3"></textarea>
+                </div>
+                <div class="contato__acoes">
+                  <button type="button" class="btn">Enviar mensagem<span data-icone="seta-direita"></span></button>
+                  <p class="contato__status contato__status--ok">Mensagem enviada. Eu respondo no e-mail que você deixou.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="peca peca--larga">
+            <div class="peca__cabeca"><strong>Footer escuro</strong><span>O da landing tem quatro colunas de links; o deste design system é o que está no fim da página. Os dois terminam com a autoria à esquerda e o aviso à direita.</span></div>
+            <p class="peca__nota">O botão de voltar ao topo está na seção Movimento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guia__secao" aria-labelledby="titulo-codigo">
+      <div class="guia__cabeca">
+        <p class="ey">Para o código</p>
+        <h2 id="titulo-codigo">Do tokens.css antigo para o novo</h2>
+        <p>Os componentes já usavam só variáveis, então a troca começou em estilos/tokens.css. O tema escuro continua em [data-tema="escuro"].</p>
+      </div>
+      <div class="tabela">
+        <table class="tk tk--codigo">
+          <thead><tr><th scope="col" class="ey">Antes</th><th scope="col" class="ey">Agora</th><th scope="col" class="ey">O que muda</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">--marca-900 / --marca-700</td><td class="mono">--forte, --bloco</td><td>Sai o verde-petróleo; entra tinta quase preta.</td></tr>
+            <tr><td class="mono">--marca-500</td><td class="mono">--acao, --link</td><td>Cobalto para agir e para os artigos de lei.</td></tr>
+            <tr><td class="mono">--acento-500 #C9822B</td><td class="mono">--grifo #FFE247</td><td>O ocre vira marca-texto, usado só em destaques.</td></tr>
+            <tr><td class="mono">--cor-balao-lia</td><td class="mono">removido</td><td>A Lia fala sem balão; a orientação é um cartão só.</td></tr>
+            <tr><td class="mono">--fonte system-ui</td><td class="mono">Schibsted Grotesk + JetBrains Mono</td><td>Carregadas do Google Fonts, com system-ui de reserva.</td></tr>
+            <tr><td class="mono">--texto-md 16px</td><td class="mono">17px</td><td>Corpo maior para ler com pressa.</td></tr>
+            <tr><td class="mono">--raio-md 10 / --raio-lg 16</td><td class="mono">12 botão · 16 cartão · 20 bloco</td><td>Cantos mais secos, menos "bolha".</td></tr>
+            <tr><td class="mono">faixa bege de aviso</td><td class="mono">aviso junto ao campo</td><td>A privacidade aparece onde a pessoa digita.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rod">
+    <div class="wrap guia__rodape">
+      <div class="guia__rodape-linha">
+        <p class="guia__assinatura"><span class="marca">lia</span>Design system da Lia</p>
+        <nav class="guia__links" aria-label="Rodapé"><a href="landing.html">Site</a><a href="index.html">Abrir a Lia</a><a data-repositorio>GitHub</a><a data-portfolio>Meu portfólio</a><a href="landing.html#contato">Entrar em contato</a></nav>
+      </div>
+      <div class="rod__fim">
+        <p>Avaliação Regimental A1 · Tendências em Ciência da Computação · UDF 2026/2 · Brayan Aragão Pletsch</p>
+        <p>Protótipo acadêmico. As orientações são só informativas e não me responsabilizo por decisões tomadas com base nelas.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="base-conhecimento.js"></script>
+  <script src="agente.js"></script>
+  <script src="ui/icones.js"></script>
+  <script src="ui/componentes.js"></script>
+  <script src="ui/design-system.js"></script>
+</body>
+</html>
