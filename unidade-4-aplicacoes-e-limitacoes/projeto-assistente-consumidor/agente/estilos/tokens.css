@@ -1,0 +1,72 @@
+/* Tokens da Lia. Componentes usam só estas variáveis. O tema escuro troca os valores, nunca os nomes. */
+:root, [data-tema="claro"] {
+  --bg: #FFFFFF;
+  --bg2: #F3F3F0;
+  --painel: #F3F3F0;
+  --card: #FFFFFF;
+  --forte: #15171C;
+  --texto: #3A3D45;
+  --apoio: #666A73;         /* passa AA sobre #FFF e sobre #F3F3F0 */
+  --linha: rgba(21,23,28,.12);
+  --linha-forte: rgba(21,23,28,.28);
+  --acao: #2643E9;
+  --acao-hover: #1B32C2;
+  --sobre-acao: #FFFFFF;
+  --link: #2643E9;
+  --link-bg: #EBEEFF;
+  --bloco: #15171C;
+  --bloco-linha: rgba(255,255,255,.14);
+  --sobre-bloco: #F4F4F1;
+  --sobre-bloco-apoio: #A9ADB6;
+  --grifo: #FFE247;
+  --sobre-grifo: #15171C;
+  --grifo-h: 42%;           /* no claro o marca-texto passa só por baixo da palavra */
+  --grifo-cor: #15171C;
+  --grifo-cor-ini: #15171C;
+  --ok: #0E7A4F;   --ok-bg: #E3F3EA;
+  --erro: #C2341F; --erro-bg: #FBE9E6;
+  --alerta: #7A5E00; --alerta-bg: #FFF6BF;
+  --papel: #F7F6F1;
+  --sombra: 0 1px 2px rgba(21,23,28,.05), 0 12px 32px rgba(21,23,28,.07);
+  --sombra-alta: 0 2px 4px rgba(21,23,28,.06), 0 28px 56px rgba(21,23,28,.12);
+  --rodape: #15171C;
+  --rodape-linha: transparent;
+  --rolagem: #C2C4CA; --rolagem-hover: #8F939C; --rolagem-trilho: #F3F3F0;
+  color-scheme: light;
+}
+
+[data-tema="escuro"] {
+  --bg: #0F1115;
+  --bg2: #171A21;
+  --painel: #14171D;
+  --card: #171A21;
+  --forte: #F4F4F1;
+  --texto: #C9CCD3;
+  --apoio: #9298A3;
+  --linha: rgba(255,255,255,.10);
+  --linha-forte: rgba(255,255,255,.24);
+  --acao: #3B57FF;
+  --acao-hover: #2F4BF5;
+  --sobre-acao: #FFFFFF;
+  --link: #9AABFF;
+  --link-bg: #1E2650;
+  --bloco: #1E222B;
+  --bloco-linha: rgba(255,255,255,.12);
+  --sobre-bloco: #F4F4F1;
+  --sobre-bloco-apoio: #A9ADB6;
+  --grifo: #FFE247;
+  --sobre-grifo: #15171C;
+  --grifo-h: 100%;          /* no escuro o grifo cobre a palavra inteira e o texto fica em tinta */
+  --grifo-cor: #15171C;
+  --grifo-cor-ini: #F4F4F1;
+  --ok: #5DD39E;   --ok-bg: #11291F;
+  --erro: #FF8A75; --erro-bg: #2E1612;
+  --alerta: #FFE247; --alerta-bg: #2A2610;
+  --papel: #1E222B;
+  --sombra: 0 0 0 1px rgba(255,255,255,.04);
+  --sombra-alta: 0 0 0 1px rgba(255,255,255,.08), 0 28px 56px rgba(0,0,0,.55);
+  --rodape: #0A0B0E;
+  --rodape-linha: rgba(255,255,255,.08);
+  --rolagem: #3A3F4B; --rolagem-hover: #5A6070; --rolagem-trilho: #0F1115;
+  color-scheme: dark;
+}
