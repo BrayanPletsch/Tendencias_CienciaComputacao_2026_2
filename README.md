@@ -21,6 +21,7 @@ instruções para eles e em que pontos o resultado precisa ser conferido por uma
 ├── unidade-1-fundamentos/            IA, LLMs e Engenharia de Prompt
 ├── unidade-2-programacao-assistida/  programação assistida e automação com IA
 ├── unidade-3-low-code/               projeto Low Code em grupo
+├── unidade-4-aplicacoes-e-limitacoes/ agente de IA e ética (projeto final da A1)
 └── LICENSE
 ```
 
@@ -29,9 +30,10 @@ Cada aula tem uma pasta com dois arquivos fixos:
 - `README.md`, com o resumo da aula escrito por mim a partir dos slides e da bibliografia;
 - `atividade.md`, com a entrega avaliada: o que foi feito, os resultados e a análise.
 
-Quando a atividade tem código, ele fica numa subpasta (`codigo/` ou `experimentos/`) e roda
-só com o Python 3 instalado. Os resultados citados nos textos vêm da execução desses
-arquivos.
+Quando a atividade tem código, ele fica numa subpasta (`codigo/` ou `experimentos/`). Nas
+Unidades 1 e 2 ele roda só com o Python 3 instalado. Na Unidade 4, o agente é uma página HTML
+com JavaScript que abre direto no navegador, e os testes rodam com Node.js. Os resultados
+citados nos textos vêm da execução desses arquivos.
 
 ## Unidades
 
@@ -40,7 +42,7 @@ arquivos.
 | [Unidade 1](unidade-1-fundamentos/) | Fundamentos de IA e Engenharia de Prompt | concluída |
 | [Unidade 2](unidade-2-programacao-assistida/) | Programação assistida e automação com IA | concluída |
 | [Unidade 3](unidade-3-low-code/) | Low Code e No Code | projeto em grupo: protótipo montado e testado em parte |
-| Unidade 4 | Agentes de IA e ética | a partir de 05/11 |
+| [Unidade 4](unidade-4-aplicacoes-e-limitacoes/) | Aplicações e limitações: agentes de IA e ética | projeto final da A1 (individual): agente de reclamação do consumidor |
 
 ## Como executar o código
 
@@ -72,6 +74,17 @@ python -m unittest test_contar_niveis_log -v
 
 Os testes do CEP não usam a rede. Só o `executar_casos.py` da aula 06 consulta o ViaCEP de
 verdade e precisa de internet.
+
+Agente da Unidade 4: abra
+`unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/agente/landing.html` no
+navegador para ver a apresentação do projeto, ou `agente/index.html` na mesma pasta para ir
+direto para a Lia. As demonstrações da apresentação ficam em `index.html?exemplo=1` até
+`?exemplo=4`. Para os testes (Node.js 18 ou mais novo):
+
+```bash
+cd unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/agente
+node testes.js
+```
 
 ## Uso de IA neste repositório
 
