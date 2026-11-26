@@ -533,7 +533,7 @@ projeto-assistente-consumidor/
 │   │   ├── ui/                    icones.js, tema.js e componentes.js
 │   │   └── paginas/               landing.js, conversa.js, design-system.js
 │   └── testes/                    testes.js e resultado-dos-testes.txt (saída da última execução)
-├── imagens/                       recortes das telas usados neste README
+├── imagens/                       recortes das telas e o GIF da página inicial, usados nos READMEs
 ├── evidencias/                    telas inteiras do site, da Lia e do design system
 └── slides/apresentacao.pptx       apresentação final
 ```

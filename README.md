@@ -1,5 +1,11 @@
 # Tendências em Ciência da Computação (2026/2)
 
+Link do site abaixo:
+
+[lia-consumidor.vercel.app](https://lia-consumidor.vercel.app)
+
+[![A página inicial da Lia, assistente de reclamação do consumidor, rolando de cima até embaixo](unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/imagens/lia-rolando.gif)](https://lia-consumidor.vercel.app)
+
 Repositório das atividades da disciplina Tendências em Ciência da Computação, do Centro
 Universitário UDF, no segundo semestre de 2026.
 
