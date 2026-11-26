@@ -1,6 +1,6 @@
 # Lia: assistente de reclamação do consumidor
 
-![Topo do site da Lia, com a frase "Deu problema na compra? A Lia grifa o seu direito." e um cartão com um relato e o prazo de 85 dias](imagens/landing-topo.png)
+[![A página inicial da Lia rolando de cima até embaixo, começando pela frase "Deu problema na compra? A Lia grifa o seu direito." e pelo cartão com o prazo de 85 dias](imagens/lia-rolando.gif)](https://lia-consumidor.vercel.app)
 
 A Lia ajuda quem teve problema com uma compra ou com um serviço. Você conta o que aconteceu
 com as suas palavras, e ela descobre que tipo de caso é, pergunta o que faltar e devolve o
