@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Lia, assistente de reclamação do consumidor</title>
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script src="scripts/ui/tema.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/tokens.css">
+  <link rel="stylesheet" href="estilos/base.css">
+  <link rel="stylesheet" href="estilos/componentes.css">
+  <link rel="stylesheet" href="estilos/paginas/conversa.css">
+</head>
+<body class="raiz">
+  <div class="app" id="app" data-estado="inicio">
+    <aside class="lado" id="lado" aria-label="Ficha do caso">
+      <div class="lado__topo">
+        <a href="index.html" class="marca" aria-label="Lia, voltar ao site">lia</a>
+        <button type="button" class="btn-ico so-mobile" id="fechar-ficha" aria-label="Fechar ficha do caso"><span data-icone="fechar"></span></button>
+      </div>
+      <section class="lado__ficha">
+        <p class="ey">Ficha do caso</p>
+        <div class="ficha" id="ficha"></div>
+      </section>
+      <div class="lado__privacidade">
+        <span data-icone="cadeado"></span>
+        <div>
+          <strong>Tudo fica neste navegador</strong>
+          <p>CPF, telefone, e-mail e cartão são apagados antes da análise. Fechou a página, o caso some.</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="coluna">
+      <header class="cabecalho">
+        <a href="index.html" class="marca so-mobile" aria-label="Lia, voltar ao site">lia</a>
+        <a href="index.html" class="voltar"><span data-icone="seta-esquerda"></span>Voltar ao site</a>
+        <div class="cabecalho__acoes" id="acoes"></div>
+      </header>
+      <div class="progresso-movel so-mobile" id="progresso-movel"></div>
+
+      <main class="principal">
+        <h1 class="so-leitor">Lia, assistente de reclamação do consumidor</h1>
+        <section class="inicio" id="inicio" aria-labelledby="titulo-relato">
+          <div class="inicio__relato" id="slot-inicio">
+            <label for="campo" id="titulo-relato" class="inicio__titulo">O que <span class="grifo">aconteceu?</span></label>
+            <p class="inicio__apoio" id="apoio-relato">Escreva do seu jeito, como se contasse para alguém. A Lia pergunta o que faltar.</p>
+            <form id="formulario" class="compositor compositor--grande">
+              <div class="compositor__caixa">
+                <textarea id="campo" rows="3" placeholder="Ex.: comprei um celular pela internet e veio com a tela quebrada"></textarea>
+                <div class="compositor__rodape">
+                  <p class="compositor__dica">Enter envia · Shift + Enter pula linha · <span id="contador">0/1000</span></p>
+                  <button type="submit" class="btn">Enviar relato<span data-icone="seta-direita"></span></button>
+                </div>
+                <button type="submit" class="btn btn--enviar-ico" aria-label="Enviar mensagem"><span data-icone="seta-cima"></span></button>
+              </div>
+              <p class="compositor__aviso">Não digite CPF, senha nem número de cartão.</p>
+            </form>
+            <p class="aviso-digitar"><span class="selo selo--alerta" aria-hidden="true">!</span>Não digite CPF, senha nem número de cartão.</p>
+          </div>
+          <section class="inicio__casos" aria-labelledby="titulo-casos">
+            <div class="inicio__casos-topo">
+              <h2 id="titulo-casos">Ou comece por um caso parecido</h2>
+              <p>6 tipos de caso</p>
+            </div>
+            <div id="casos"></div>
+          </section>
+        </section>
+        <section class="chat" aria-label="Conversa com a Lia">
+          <div class="mensagens" id="mensagens" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <div class="doca" id="slot-conversa"></div>
+      <div id="rodape"></div>
+    </div>
+
+    <button type="button" class="veu" id="veu" aria-label="Fechar ficha do caso" hidden></button>
+  </div>
+
+  <script src="scripts/nucleo/base-conhecimento.js"></script>
+  <script src="scripts/nucleo/agente.js"></script>
+  <script src="scripts/ui/icones.js"></script>
+  <script src="scripts/ui/componentes.js"></script>
+  <script src="scripts/paginas/conversa.js"></script>
+</body>
+</html>

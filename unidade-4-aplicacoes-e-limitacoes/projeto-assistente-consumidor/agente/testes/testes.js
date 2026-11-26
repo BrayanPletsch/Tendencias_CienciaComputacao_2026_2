@@ -1,9 +1,9 @@
-// Uso: node testes.js        (mostra o resultado)
-//      node testes.js --salvar (também grava resultado-dos-testes.txt)
+// Uso, de dentro de agente/: node testes/testes.js           (mostra o resultado)
+//                           node testes/testes.js --salvar  (também grava testes/resultado-dos-testes.txt)
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { criarAgente, extrairTempo, normalizar, LIMITE_CARACTERES, TAMANHO_MEMORIA_CURTA } = require("./agente.js");
+const { criarAgente, extrairTempo, normalizar, LIMITE_CARACTERES, TAMANHO_MEMORIA_CURTA } = require("../scripts/nucleo/agente.js");
 
 const HOJE = "2026-11-26";
 const testes = [];

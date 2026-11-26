@@ -4,7 +4,7 @@
   const { icone, trocarMarcadores } = window.LiaIcones;
   const LIMITE = window.Lia.LIMITE_CARACTERES;
 
-  // Conversas prontas para a apresentação: index.html?exemplo=1 até ?exemplo=4
+  // Conversas prontas para a apresentação: conversa.html?exemplo=1 até ?exemplo=4
   const DEMONSTRACOES = {
     1: ["Comprei um fogão pelo site há 5 dias e ele não liga", "Logo que recebi"],
     2: ["comprei uma geladeira na loja do shopping e quero devolver porque não gostei"],

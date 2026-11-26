@@ -409,7 +409,7 @@
     for (const caso of CASOS_INICIAIS) {
       const cartao = raizBusca.querySelector(`[data-caso="${caso.id}"]`);
       if (!cartao) continue;
-      cartao.href = `index.html?relato=${encodeURIComponent(caso.exemplo)}`;
+      cartao.href = `conversa.html?relato=${encodeURIComponent(caso.exemplo)}`;
       cartao.prepend(icone(caso.icone));
       cartao.querySelector(".caso__fala").textContent = `“${caso.exemplo}.”`;
     }
@@ -468,8 +468,8 @@
       el("div", { classe: "rodape__linha" },
         el("p", { classe: "rodape__aviso" }, el("span", { classe: "marca", texto: "lia" }), el("span", { texto: "Protótipo acadêmico. As orientações são só informativas e não me responsabilizo por decisões tomadas com base nelas." })),
         el("nav", { classe: "rodape__links", atributos: { "aria-label": "Rodapé" } },
-          link("landing.html", "Sobre a Lia"), link("design-system.html", "Design system"), link(REPOSITORIO, "GitHub"),
-          link(PORTFOLIO, "Meu portfólio"), link("landing.html#contato", "Entrar em contato"))),
+          link("index.html", "Sobre a Lia"), link("design-system.html", "Design system"), link(REPOSITORIO, "GitHub"),
+          link(PORTFOLIO, "Meu portfólio"), link("index.html#contato", "Entrar em contato"))),
       el("p", { texto: "Avaliação Regimental A1 · Tendências em Ciência da Computação · UDF 2026/2 · Brayan Aragão Pletsch" }));
   }
 
