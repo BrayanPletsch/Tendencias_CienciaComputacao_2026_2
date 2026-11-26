@@ -113,7 +113,7 @@ teste foram escritos por mim, sem nomes nem documentos reais.
 ## 5. Modelar o chatbot
 
 O fluxo deixa escolher entre diálogos, IA generativa ou um modelo híbrido. Escolhi diálogos
-com regras, pelos motivos da seção 3 do [README](README.md): explicação de cada resposta,
+com regras, pelos motivos da seção 4 do [README](README.md): explicação de cada resposta,
 nenhum dado saindo do navegador e custo zero.
 
 Linhas temáticas: um tema (relações de consumo), cinco assuntos (produto, compra, cobrança,
@@ -217,9 +217,10 @@ explorando os casos com relatos reais, e esse é o primeiro dos próximos passos
 
 ## 10. Implantar o chatbot
 
-A versão 1.0 está no repositório, datada de 26/11/2026. Para publicar, basta ligar o GitHub
-Pages; o endereço está na seção 12 do [README](README.md). Como não há servidor nem banco de
-dados, publicar é só servir os arquivos da pasta `agente/`.
+A versão 1.0 está no repositório, datada de 26/11/2026, e publicada em dois lugares: na
+Vercel, em [lia-consumidor.vercel.app](https://lia-consumidor.vercel.app), e no GitHub Pages
+do repositório; os endereços estão na seção 14 do [README](README.md). Como não há servidor
+nem banco de dados, publicar é só servir os arquivos da pasta `agente/`.
 
 ## 11. Realizar a curadoria
 
