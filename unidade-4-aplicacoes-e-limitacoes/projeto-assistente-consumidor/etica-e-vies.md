@@ -12,7 +12,7 @@ criptografia e controle de acesso.
 | Princípio | Como está na Lia |
 |---|---|
 | Coleta mínima | A Lia não pede nenhum dado pessoal. Se a pessoa digitar CPF, telefone, e-mail ou número de cartão, a camada perceptiva apaga o dado antes de qualquer análise e avisa que ele não era necessário |
-| Criptografia | Não existe transmissão nem armazenamento: a conversa fica no navegador e some quando a página é fechada. Se a página for publicada no GitHub Pages, ela é servida por HTTPS |
+| Criptografia | Não existe transmissão nem armazenamento: a conversa fica no navegador e some quando a página é fechada. A página publicada na Vercel é servida por HTTPS |
 | Controle de acesso | Não há o que controlar, porque nada é guardado. A ficha do caso é apagada quando a orientação sai |
 
 O guia também cita o dilema do uso secundário: usar conversas antigas para outra finalidade

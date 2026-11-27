@@ -217,9 +217,9 @@ explorando os casos com relatos reais, e esse é o primeiro dos próximos passos
 
 ## 10. Implantar o chatbot
 
-A versão 1.0 está no repositório, datada de 26/11/2026, e publicada em dois lugares: na
-Vercel, em [lia-consumidor.vercel.app](https://lia-consumidor.vercel.app), e no GitHub Pages
-do repositório; os endereços estão na seção 14 do [README](README.md). Como não há servidor
+A versão 1.0 está no repositório, datada de 26/11/2026, e publicada na Vercel, em
+[lia-consumidor.vercel.app](https://lia-consumidor.vercel.app); o endereço também está na
+seção 14 do [README](README.md). Como não há servidor
 nem banco de dados, publicar é só servir os arquivos da pasta `agente/`.
 
 ## 11. Realizar a curadoria

@@ -344,7 +344,7 @@ A especificação segue as 11 etapas do fluxo de trabalho do Serpro Bots e está
 | 7. Implementar | HTML e JavaScript, sem servidor |
 | 8. Testar | 55 testes e a validação com frases novas |
 | 9. Homologar | Conferência contra os critérios de aceite |
-| 10. Implantar | GitHub Pages e Vercel |
+| 10. Implantar | Vercel, em lia-consumidor.vercel.app |
 | 11. Fazer a curadoria | A avaliação de cada resposta e um registro sem o texto da pessoa |
 
 O registro de curadoria fica no agente, na função `verRegistro()`, que os testes usam. A tela
@@ -473,9 +473,8 @@ As telas inteiras, do jeito que o navegador mostra, ficam em [evidencias/](evide
 
 ### Pela internet
 
-O jeito mais fácil é abrir [lia-consumidor.vercel.app](https://lia-consumidor.vercel.app). O
-mesmo site também está no GitHub Pages do repositório, em
-`https://brayanpletsch.github.io/Tendencias_CienciaComputacao_2026_2/unidade-4-aplicacoes-e-limitacoes/projeto-assistente-consumidor/agente/`.
+Abra [lia-consumidor.vercel.app](https://lia-consumidor.vercel.app). O site fica hospedado na
+Vercel, que publica a versão nova a cada push na branch `main`.
 
 ### No seu computador
 
